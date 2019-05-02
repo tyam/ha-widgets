@@ -1,0 +1,87 @@
+
+$color-base: rgb(255, 255, 255) !default;
+$color-base90: rgb(248, 248, 248) !default;
+$color-base80: rgb(230, 230, 230) !default;
+$color-normal: rgb(0, 0, 0) !default;
+$color-primary: rgb(2, 102, 252) !default;
+$color-danger: rgb(235, 6, 6) !default;
+
+$back99: $color-base;
+$back90: $color-base90;
+$back80: $color-base80;
+$back99-normal: $color-normal;
+$back70-normal: mix($color-normal, $color-base, 70%);
+$back30-normal: mix($color-normal, $color-base, 30%);
+$back12-normal: mix($color-normal, $color-base, 12%);
+$back99-primary: $color-primary ;
+$back70-primary: mix($color-primary, $color-base, 70%);
+$back30-primary: mix($color-primary, $color-base, 30%);
+$back12-primary: mix($color-primary, $color-base, 12%);
+$back99-danger: $color-danger;
+$back70-danger: mix($color-danger, $color-base, 70%);
+$back30-danger: mix($color-danger, $color-base, 30%);
+$back12-danger: mix($color-danger, $color-base, 12%);
+
+@function fore($scheme, $opa) {
+    @if $scheme == null {
+        @return rgba($color-normal, $opa);
+    } @else if $scheme == base {
+        @return rgba($color-base, $opa);
+    } @else if $scheme == primary {
+        @return rgba($color-primary, $opa);
+    } @else if $scheme == danger {
+        @return rgba($color-danger, $opa);
+    } @else {
+        @return rgba($color-normal, $opa);
+    }
+}
+@function fore87($scheme: null) {
+    @return fore($scheme, 0.87);
+}
+@function fore54($scheme: null) {
+    @return fore($scheme, 0.54);
+}
+@function fore26($scheme: null) {
+    @return fore($scheme, 0.26);
+}
+@function fore12($scheme: null) {
+    @return fore($scheme, 0.12);
+}
+
+$alpha-disabled: 0.45 !default;
+
+$x-huge: 1.5 !default;
+$x-large: 1.15 !default;
+$x-medium: 1 !default;
+$x-small: 0.85 !default;
+$x-nano: 0.75 !default;
+
+$rem: 1rem !default;
+$rule: $rem * 0.0625 !default;
+$border: $rem * 0.125 !default;
+$spacing: $rem * 0.25 !default;
+$padding: $rem * 0.5 !default;
+$blank: $rem !default;
+$gutter: $rem * 2 !default;
+
+$mh: $rem * 0.125 !default;
+$m1: $rem * 0.25 !default;
+$m2: $rem * 0.5 !default;
+$m3: $rem !default;
+$m4: $rem * 2 !default;
+$m5: $rem * 4 !default;
+
+$line-height: 1.5 !default;
+$line-height-narrow: 1.3 !default;
+
+$input-height: $rem * $line-height + 2 * $padding;
+
+//$width-large: 800px;
+
+//$drawer-width: 10rem;
+//$container-width: 50rem;
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+    font-size: 16px;
+}

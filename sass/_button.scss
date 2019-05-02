@@ -1,0 +1,103 @@
+
+
+.haw-button {
+    @extend .haw-component;
+    height: $input-height;
+    line-height: ($input-height - 2 * $border);
+    text-align: center;
+    font-size: $rem;
+    font-weight: 500;
+    padding: 0 $blank;
+    background-color: transparent;
+    background-clip: border-box;
+    border-radius: $padding;
+    border-style: solid;
+    border-width: $border;
+    border-color: fore12();
+    color: fore87();
+    box-sizing: border-box;
+    outline: none;
+    white-space: nowrap;
+    font-weight: 500;
+    @include emittable();
+    cursor: pointer;
+    transition: background-color 0.2s linear, border-color 0.2s linear;
+    &[disabled] {
+        opacity: $alpha-disabled;
+        pointer-events: none;
+        cursor: auto;
+    }
+    &:hover {
+        background-color: $back12-primary;
+    }
+    &.-size-large {
+        font-size: $x-large * $rem;
+        height: $x-large * $input-height;
+        line-height: $x-large * ($input-height - 2 * $border);
+        padding: 0 $x-large * $blank;
+        border-width: $x-large * $border;
+    }
+    &.-size-small {
+        font-size: $x-small * $rem;
+        height: $x-small * $input-height;
+        line-height: $x-small * ($input-height - 2 * $border);
+        padding: 0 $x-small * $blank;
+        border-width: $x-small * $border;
+    }
+    &.-size-nano {
+        font-size: $x-nano * $rem;
+        height: $x-nano * $input-height;
+        line-height: $x-nano * ($input-height - 2 * $border);
+        padding: 0 $x-nano * $blank;
+        border-width: $x-nano * $border;
+    }
+    &.-coloring-primary {
+        border-color: fore54(primary);
+        color: fore87(primary);
+    }
+    &.-coloring-danger {
+        border-color: fore54(danger);
+        color: fore87(danger);
+        &:hover {
+            background-color: $back12-danger;
+        }
+    }
+    &.-shape-contained {
+        background-color: $back12-normal;
+        border-color: transparent;
+        &:hover {
+            background-color: $back30-normal;
+        }
+        &.-coloring-primary {
+            background-color: $back99-primary;
+            color: fore87(base);
+            &:hover {
+                background-color: $back70-primary;
+            }
+        }
+        &.-coloring-danger {
+            background-color: $back99-danger;
+            color: fore87(base);
+            &:hover {
+                background-color: $back70-danger;
+            }
+        }
+    }
+    &.-shape-open {
+        padding-left: $padding;  // not scaled
+        padding-right: $padding;  // not scaled
+        border-color: transparent;
+        color: inherit;
+        border-radius: 0;
+        //font-weight: 700;
+        &.-coloring-primary {
+            color: fore87(primary);
+        }
+        &.-coloring-danger {
+            color: fore87(danger);
+        }
+    }
+    /*&:focus {
+        border-color: $color-focus;
+    }*/
+}
