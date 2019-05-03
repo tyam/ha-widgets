@@ -1,0 +1,28 @@
+
+
+.haw-scrim {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: fore54();
+    overflow: hidden;
+    &.-run {
+        transition: opacity 0.2s linear;
+    }
+    &.-created {
+        opacity: 0;
+    }
+    &.-removed {
+        opacity: 0;
+    }
+    &.-for-spinner {
+        background-color: fore26(base);
+    }
+}
+
+.haw--suspended-by-scrim, .haw--suspended-by-scrim body {
+    overflow: hidden;
+}

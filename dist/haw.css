@@ -34,7 +34,7 @@
     transform: scaleX(0);
     opacity: 0; } }
 
-.haw-component, .haw-layout, .haw-hbox, .haw-vbox, .haw-button {
+.haw-component, .haw-layout, .haw-hbox, .haw-vbox, .haw-dialog, .haw-button {
   display: block;
   flex: 0 0 auto;
   margin: 0;
@@ -43,21 +43,21 @@
   height: auto;
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
   font-size: 16px; }
-  .haw-component.-growable, .-growable.haw-layout, .-growable.haw-hbox, .-growable.haw-vbox, .-growable.haw-button {
+  .haw-component.-growable, .-growable.haw-layout, .-growable.haw-hbox, .-growable.haw-vbox, .-growable.haw-dialog, .-growable.haw-button {
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 0; }
-    .haw-vbox > .haw-component.-growable, .haw-vbox > .-growable.haw-layout, .haw-vbox > .-growable.haw-hbox, .haw-vbox > .-growable.haw-vbox, .haw-vbox > .-growable.haw-button {
+    .haw-vbox > .haw-component.-growable, .haw-dialog > .haw-component.-growable, .haw-vbox > .-growable.haw-layout, .haw-dialog > .-growable.haw-layout, .haw-vbox > .-growable.haw-hbox, .haw-dialog > .-growable.haw-hbox, .haw-vbox > .-growable.haw-vbox, .haw-dialog > .-growable.haw-vbox, .haw-vbox > .-growable.haw-dialog, .haw-dialog > .-growable.haw-dialog, .haw-vbox > .-growable.haw-button, .haw-dialog > .-growable.haw-button {
       min-height: 0; }
-    .haw-hbox > .haw-component.-growable, .haw-hbox > .-growable.haw-layout, .haw-hbox > .-growable.haw-hbox, .haw-hbox > .-growable.haw-vbox, .haw-hbox > .-growable.haw-button {
+    .haw-hbox > .haw-component.-growable, .haw-hbox > .-growable.haw-layout, .haw-hbox > .-growable.haw-hbox, .haw-hbox > .-growable.haw-vbox, .haw-hbox > .-growable.haw-dialog, .haw-hbox > .-growable.haw-button {
       min-width: 0; }
-  .haw-component.-align-start, .-align-start.haw-layout, .-align-start.haw-hbox, .-align-start.haw-vbox, .-align-start.haw-button {
+  .haw-component.-align-start, .-align-start.haw-layout, .-align-start.haw-hbox, .-align-start.haw-vbox, .-align-start.haw-dialog, .-align-start.haw-button {
     align-self: flex-start; }
-  .haw-component.-align-end, .-align-end.haw-layout, .-align-end.haw-hbox, .-align-end.haw-vbox, .-align-end.haw-button {
+  .haw-component.-align-end, .-align-end.haw-layout, .-align-end.haw-hbox, .-align-end.haw-vbox, .-align-end.haw-dialog, .-align-end.haw-button {
     align-self: flex-end; }
-  .haw-component.-align-center, .-align-center.haw-layout, .-align-center.haw-hbox, .-align-center.haw-vbox, .-align-center.haw-button {
+  .haw-component.-align-center, .-align-center.haw-layout, .-align-center.haw-hbox, .-align-center.haw-vbox, .-align-center.haw-dialog, .-align-center.haw-button {
     align-self: center; }
-  .haw-component.-align-stretch, .-align-stretch.haw-layout, .-align-stretch.haw-hbox, .-align-stretch.haw-vbox, .-align-stretch.haw-button {
+  .haw-component.-align-stretch, .-align-stretch.haw-layout, .-align-stretch.haw-hbox, .-align-stretch.haw-vbox, .-align-stretch.haw-dialog, .-align-stretch.haw-button {
     align-self: stretch; }
 
 .haw--mt-0 {
@@ -132,28 +132,28 @@
 .haw--mr-5 {
   margin-right: 4rem !important; }
 
-.haw-layout, .haw-hbox, .haw-vbox {
+.haw-layout, .haw-hbox, .haw-vbox, .haw-dialog {
   display: flex;
   justify-content: flex-start;
   flex-wrap: nowrap;
   align-items: stretch; }
-  .haw-layout.-justify-start, .-justify-start.haw-hbox, .-justify-start.haw-vbox {
+  .haw-layout.-justify-start, .-justify-start.haw-hbox, .-justify-start.haw-vbox, .-justify-start.haw-dialog {
     justify-content: flex-start; }
-  .haw-layout.-justify-end, .-justify-end.haw-hbox, .-justify-end.haw-vbox {
+  .haw-layout.-justify-end, .-justify-end.haw-hbox, .-justify-end.haw-vbox, .-justify-end.haw-dialog {
     justify-content: flex-end; }
-  .haw-layout.-justify-center, .-justify-center.haw-hbox, .-justify-center.haw-vbox {
+  .haw-layout.-justify-center, .-justify-center.haw-hbox, .-justify-center.haw-vbox, .-justify-center.haw-dialog {
     justify-content: center; }
-  .haw-layout.-justify-space-between, .-justify-space-between.haw-hbox, .-justify-space-between.haw-vbox {
+  .haw-layout.-justify-space-between, .-justify-space-between.haw-hbox, .-justify-space-between.haw-vbox, .-justify-space-between.haw-dialog {
     justify-content: space-between; }
-  .haw-layout.-justify-space-around, .-justify-space-around.haw-hbox, .-justify-space-around.haw-vbox {
+  .haw-layout.-justify-space-around, .-justify-space-around.haw-hbox, .-justify-space-around.haw-vbox, .-justify-space-around.haw-dialog {
     justify-content: space-around; }
-  .haw-layout.-align-items-start, .-align-items-start.haw-hbox, .-align-items-start.haw-vbox {
+  .haw-layout.-align-items-start, .-align-items-start.haw-hbox, .-align-items-start.haw-vbox, .-align-items-start.haw-dialog {
     align-items: flex-start; }
-  .haw-layout.-align-items-end, .-align-items-end.haw-hbox, .-align-items-end.haw-vbox {
+  .haw-layout.-align-items-end, .-align-items-end.haw-hbox, .-align-items-end.haw-vbox, .-align-items-end.haw-dialog {
     align-items: flex-end; }
-  .haw-layout.-align-items-center, .-align-items-center.haw-hbox, .-align-items-center.haw-vbox {
+  .haw-layout.-align-items-center, .-align-items-center.haw-hbox, .-align-items-center.haw-vbox, .-align-items-center.haw-dialog {
     align-items: center; }
-  .haw-layout.-align-items-stretch, .-align-items-stretch.haw-hbox, .-align-items-stretch.haw-vbox {
+  .haw-layout.-align-items-stretch, .-align-items-stretch.haw-hbox, .-align-items-stretch.haw-vbox, .-align-items-stretch.haw-dialog {
     align-items: stretch; }
 
 .haw-hbox {
@@ -207,56 +207,109 @@
     margin-top: 4rem;
     margin-bottom: 4rem; }
 
-.haw-vbox {
+.haw-vbox, .haw-dialog {
   flex-direction: column; }
-  .haw-vbox.-scrollable {
+  .haw-vbox.-scrollable, .-scrollable.haw-dialog {
     overflow: auto;
     -webkit-overflow-scrolling: touch; }
-  .haw-vbox.-g-1:not(.-noedge) > *:first-child {
+  .haw-vbox.-g-1:not(.-noedge) > *:first-child, .-g-1.haw-dialog:not(.-noedge) > *:first-child {
     margin-top: 0.25rem; }
-  .haw-vbox.-g-1 > *:not(:last-child) {
+  .haw-vbox.-g-1 > *:not(:last-child), .-g-1.haw-dialog > *:not(:last-child) {
     margin-bottom: 0.25rem; }
-  .haw-vbox.-g-1:not(.-noedge) > *:last-child {
+  .haw-vbox.-g-1:not(.-noedge) > *:last-child, .-g-1.haw-dialog:not(.-noedge) > *:last-child {
     margin-bottom: 0.25rem; }
-  .haw-vbox.-g-1:not(.-noedge) > * {
+  .haw-vbox.-g-1:not(.-noedge) > *, .-g-1.haw-dialog:not(.-noedge) > * {
     margin-left: 0.25rem;
     margin-right: 0.25rem; }
-  .haw-vbox.-g-2:not(.-noedge) > *:first-child {
+  .haw-vbox.-g-2:not(.-noedge) > *:first-child, .-g-2.haw-dialog:not(.-noedge) > *:first-child {
     margin-top: 0.5rem; }
-  .haw-vbox.-g-2 > *:not(:last-child) {
+  .haw-vbox.-g-2 > *:not(:last-child), .-g-2.haw-dialog > *:not(:last-child) {
     margin-bottom: 0.5rem; }
-  .haw-vbox.-g-2:not(.-noedge) > *:last-child {
+  .haw-vbox.-g-2:not(.-noedge) > *:last-child, .-g-2.haw-dialog:not(.-noedge) > *:last-child {
     margin-bottom: 0.5rem; }
-  .haw-vbox.-g-2:not(.-noedge) > * {
+  .haw-vbox.-g-2:not(.-noedge) > *, .-g-2.haw-dialog:not(.-noedge) > * {
     margin-left: 0.5rem;
     margin-right: 0.5rem; }
-  .haw-vbox.-g-3:not(.-noedge) > *:first-child {
+  .haw-vbox.-g-3:not(.-noedge) > *:first-child, .-g-3.haw-dialog:not(.-noedge) > *:first-child {
     margin-top: 1rem; }
-  .haw-vbox.-g-3 > *:not(:last-child) {
+  .haw-vbox.-g-3 > *:not(:last-child), .-g-3.haw-dialog > *:not(:last-child) {
     margin-bottom: 1rem; }
-  .haw-vbox.-g-3:not(.-noedge) > *:last-child {
+  .haw-vbox.-g-3:not(.-noedge) > *:last-child, .-g-3.haw-dialog:not(.-noedge) > *:last-child {
     margin-bottom: 1rem; }
-  .haw-vbox.-g-3:not(.-noedge) > * {
+  .haw-vbox.-g-3:not(.-noedge) > *, .-g-3.haw-dialog:not(.-noedge) > * {
     margin-left: 1rem;
     margin-right: 1rem; }
-  .haw-vbox.-g-4:not(.-noedge) > *:first-child {
+  .haw-vbox.-g-4:not(.-noedge) > *:first-child, .-g-4.haw-dialog:not(.-noedge) > *:first-child {
     margin-top: 2rem; }
-  .haw-vbox.-g-4 > *:not(:last-child) {
+  .haw-vbox.-g-4 > *:not(:last-child), .-g-4.haw-dialog > *:not(:last-child) {
     margin-bottom: 2rem; }
-  .haw-vbox.-g-4:not(.-noedge) > *:last-child {
+  .haw-vbox.-g-4:not(.-noedge) > *:last-child, .-g-4.haw-dialog:not(.-noedge) > *:last-child {
     margin-bottom: 2rem; }
-  .haw-vbox.-g-4:not(.-noedge) > * {
+  .haw-vbox.-g-4:not(.-noedge) > *, .-g-4.haw-dialog:not(.-noedge) > * {
     margin-left: 2rem;
     margin-right: 2rem; }
-  .haw-vbox.-g-5:not(.-noedge) > *:first-child {
+  .haw-vbox.-g-5:not(.-noedge) > *:first-child, .-g-5.haw-dialog:not(.-noedge) > *:first-child {
     margin-top: 4rem; }
-  .haw-vbox.-g-5 > *:not(:last-child) {
+  .haw-vbox.-g-5 > *:not(:last-child), .-g-5.haw-dialog > *:not(:last-child) {
     margin-bottom: 4rem; }
-  .haw-vbox.-g-5:not(.-noedge) > *:last-child {
+  .haw-vbox.-g-5:not(.-noedge) > *:last-child, .-g-5.haw-dialog:not(.-noedge) > *:last-child {
     margin-bottom: 4rem; }
-  .haw-vbox.-g-5:not(.-noedge) > * {
+  .haw-vbox.-g-5:not(.-noedge) > *, .-g-5.haw-dialog:not(.-noedge) > * {
     margin-left: 4rem;
     margin-right: 4rem; }
+
+.haw-scrim {
+  display: block;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.54);
+  overflow: hidden; }
+  .haw-scrim.-run {
+    transition: opacity 0.2s linear; }
+  .haw-scrim.-created {
+    opacity: 0; }
+  .haw-scrim.-removed {
+    opacity: 0; }
+  .haw-scrim.-for-spinner {
+    background-color: rgba(255, 255, 255, 0.26); }
+
+.haw--suspended-by-scrim, .haw--suspended-by-scrim body {
+  overflow: hidden; }
+
+.haw-dialog {
+  background-color: white;
+  border-radius: 0.25rem;
+  max-width: 80%;
+  max-height: 95%;
+  width: 24rem;
+  position: absolute;
+  overflow: hidden;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); }
+  .haw-scrim.-run > .haw-dialog {
+    transition: transform 0.2s ease-in-out, opacity 0.2s linear; }
+  .haw-scrim.-created > .haw-dialog {
+    transform: translate(-50%, 50%);
+    opacity: 0; }
+  .haw-scrim.-removed > .haw-dialog {
+    transform: translate(-50%, 50%);
+    opacity: 0; }
+  .haw-dialog.-size-small {
+    width: 16rem; }
+  .haw-dialog.-size-large {
+    width: 40rem; }
+  .haw-dialog.-size-xlarge {
+    width: 90%; }
+  .haw-dialog.-size-full {
+    max-width: 40rem;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%); }
 
 .haw-button {
   height: 2.5rem;
@@ -386,7 +439,7 @@
     transform: scaleX(0);
     opacity: 0; } }
 
-.haw-component, .haw-layout, .haw-hbox, .haw-vbox, .haw-button {
+.haw-component, .haw-layout, .haw-hbox, .haw-vbox, .haw-dialog, .haw-button {
   display: block;
   flex: 0 0 auto;
   margin: 0;
@@ -395,21 +448,21 @@
   height: auto;
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
   font-size: 16px; }
-  .haw-component.-growable, .-growable.haw-layout, .-growable.haw-hbox, .-growable.haw-vbox, .-growable.haw-button {
+  .haw-component.-growable, .-growable.haw-layout, .-growable.haw-hbox, .-growable.haw-vbox, .-growable.haw-dialog, .-growable.haw-button {
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 0; }
-    .haw-vbox > .haw-component.-growable, .haw-vbox > .-growable.haw-layout, .haw-vbox > .-growable.haw-hbox, .haw-vbox > .-growable.haw-vbox, .haw-vbox > .-growable.haw-button {
+    .haw-vbox > .haw-component.-growable, .haw-dialog > .haw-component.-growable, .haw-vbox > .-growable.haw-layout, .haw-dialog > .-growable.haw-layout, .haw-vbox > .-growable.haw-hbox, .haw-dialog > .-growable.haw-hbox, .haw-vbox > .-growable.haw-vbox, .haw-dialog > .-growable.haw-vbox, .haw-vbox > .-growable.haw-dialog, .haw-dialog > .-growable.haw-dialog, .haw-vbox > .-growable.haw-button, .haw-dialog > .-growable.haw-button {
       min-height: 0; }
-    .haw-hbox > .haw-component.-growable, .haw-hbox > .-growable.haw-layout, .haw-hbox > .-growable.haw-hbox, .haw-hbox > .-growable.haw-vbox, .haw-hbox > .-growable.haw-button {
+    .haw-hbox > .haw-component.-growable, .haw-hbox > .-growable.haw-layout, .haw-hbox > .-growable.haw-hbox, .haw-hbox > .-growable.haw-vbox, .haw-hbox > .-growable.haw-dialog, .haw-hbox > .-growable.haw-button {
       min-width: 0; }
-  .haw-component.-align-start, .-align-start.haw-layout, .-align-start.haw-hbox, .-align-start.haw-vbox, .-align-start.haw-button {
+  .haw-component.-align-start, .-align-start.haw-layout, .-align-start.haw-hbox, .-align-start.haw-vbox, .-align-start.haw-dialog, .-align-start.haw-button {
     align-self: flex-start; }
-  .haw-component.-align-end, .-align-end.haw-layout, .-align-end.haw-hbox, .-align-end.haw-vbox, .-align-end.haw-button {
+  .haw-component.-align-end, .-align-end.haw-layout, .-align-end.haw-hbox, .-align-end.haw-vbox, .-align-end.haw-dialog, .-align-end.haw-button {
     align-self: flex-end; }
-  .haw-component.-align-center, .-align-center.haw-layout, .-align-center.haw-hbox, .-align-center.haw-vbox, .-align-center.haw-button {
+  .haw-component.-align-center, .-align-center.haw-layout, .-align-center.haw-hbox, .-align-center.haw-vbox, .-align-center.haw-dialog, .-align-center.haw-button {
     align-self: center; }
-  .haw-component.-align-stretch, .-align-stretch.haw-layout, .-align-stretch.haw-hbox, .-align-stretch.haw-vbox, .-align-stretch.haw-button {
+  .haw-component.-align-stretch, .-align-stretch.haw-layout, .-align-stretch.haw-hbox, .-align-stretch.haw-vbox, .-align-stretch.haw-dialog, .-align-stretch.haw-button {
     align-self: stretch; }
 
 .haw--mt-0 {
@@ -484,28 +537,28 @@
 .haw--mr-5 {
   margin-right: 4rem !important; }
 
-.haw-layout, .haw-hbox, .haw-vbox {
+.haw-layout, .haw-hbox, .haw-vbox, .haw-dialog {
   display: flex;
   justify-content: flex-start;
   flex-wrap: nowrap;
   align-items: stretch; }
-  .haw-layout.-justify-start, .-justify-start.haw-hbox, .-justify-start.haw-vbox {
+  .haw-layout.-justify-start, .-justify-start.haw-hbox, .-justify-start.haw-vbox, .-justify-start.haw-dialog {
     justify-content: flex-start; }
-  .haw-layout.-justify-end, .-justify-end.haw-hbox, .-justify-end.haw-vbox {
+  .haw-layout.-justify-end, .-justify-end.haw-hbox, .-justify-end.haw-vbox, .-justify-end.haw-dialog {
     justify-content: flex-end; }
-  .haw-layout.-justify-center, .-justify-center.haw-hbox, .-justify-center.haw-vbox {
+  .haw-layout.-justify-center, .-justify-center.haw-hbox, .-justify-center.haw-vbox, .-justify-center.haw-dialog {
     justify-content: center; }
-  .haw-layout.-justify-space-between, .-justify-space-between.haw-hbox, .-justify-space-between.haw-vbox {
+  .haw-layout.-justify-space-between, .-justify-space-between.haw-hbox, .-justify-space-between.haw-vbox, .-justify-space-between.haw-dialog {
     justify-content: space-between; }
-  .haw-layout.-justify-space-around, .-justify-space-around.haw-hbox, .-justify-space-around.haw-vbox {
+  .haw-layout.-justify-space-around, .-justify-space-around.haw-hbox, .-justify-space-around.haw-vbox, .-justify-space-around.haw-dialog {
     justify-content: space-around; }
-  .haw-layout.-align-items-start, .-align-items-start.haw-hbox, .-align-items-start.haw-vbox {
+  .haw-layout.-align-items-start, .-align-items-start.haw-hbox, .-align-items-start.haw-vbox, .-align-items-start.haw-dialog {
     align-items: flex-start; }
-  .haw-layout.-align-items-end, .-align-items-end.haw-hbox, .-align-items-end.haw-vbox {
+  .haw-layout.-align-items-end, .-align-items-end.haw-hbox, .-align-items-end.haw-vbox, .-align-items-end.haw-dialog {
     align-items: flex-end; }
-  .haw-layout.-align-items-center, .-align-items-center.haw-hbox, .-align-items-center.haw-vbox {
+  .haw-layout.-align-items-center, .-align-items-center.haw-hbox, .-align-items-center.haw-vbox, .-align-items-center.haw-dialog {
     align-items: center; }
-  .haw-layout.-align-items-stretch, .-align-items-stretch.haw-hbox, .-align-items-stretch.haw-vbox {
+  .haw-layout.-align-items-stretch, .-align-items-stretch.haw-hbox, .-align-items-stretch.haw-vbox, .-align-items-stretch.haw-dialog {
     align-items: stretch; }
 
 .haw-button {
@@ -652,53 +705,106 @@
     margin-top: 4rem;
     margin-bottom: 4rem; }
 
-.haw-vbox {
+.haw-vbox, .haw-dialog {
   flex-direction: column; }
-  .haw-vbox.-scrollable {
+  .haw-vbox.-scrollable, .-scrollable.haw-dialog {
     overflow: auto;
     -webkit-overflow-scrolling: touch; }
-  .haw-vbox.-g-1:not(.-noedge) > *:first-child {
+  .haw-vbox.-g-1:not(.-noedge) > *:first-child, .-g-1.haw-dialog:not(.-noedge) > *:first-child {
     margin-top: 0.25rem; }
-  .haw-vbox.-g-1 > *:not(:last-child) {
+  .haw-vbox.-g-1 > *:not(:last-child), .-g-1.haw-dialog > *:not(:last-child) {
     margin-bottom: 0.25rem; }
-  .haw-vbox.-g-1:not(.-noedge) > *:last-child {
+  .haw-vbox.-g-1:not(.-noedge) > *:last-child, .-g-1.haw-dialog:not(.-noedge) > *:last-child {
     margin-bottom: 0.25rem; }
-  .haw-vbox.-g-1:not(.-noedge) > * {
+  .haw-vbox.-g-1:not(.-noedge) > *, .-g-1.haw-dialog:not(.-noedge) > * {
     margin-left: 0.25rem;
     margin-right: 0.25rem; }
-  .haw-vbox.-g-2:not(.-noedge) > *:first-child {
+  .haw-vbox.-g-2:not(.-noedge) > *:first-child, .-g-2.haw-dialog:not(.-noedge) > *:first-child {
     margin-top: 0.5rem; }
-  .haw-vbox.-g-2 > *:not(:last-child) {
+  .haw-vbox.-g-2 > *:not(:last-child), .-g-2.haw-dialog > *:not(:last-child) {
     margin-bottom: 0.5rem; }
-  .haw-vbox.-g-2:not(.-noedge) > *:last-child {
+  .haw-vbox.-g-2:not(.-noedge) > *:last-child, .-g-2.haw-dialog:not(.-noedge) > *:last-child {
     margin-bottom: 0.5rem; }
-  .haw-vbox.-g-2:not(.-noedge) > * {
+  .haw-vbox.-g-2:not(.-noedge) > *, .-g-2.haw-dialog:not(.-noedge) > * {
     margin-left: 0.5rem;
     margin-right: 0.5rem; }
-  .haw-vbox.-g-3:not(.-noedge) > *:first-child {
+  .haw-vbox.-g-3:not(.-noedge) > *:first-child, .-g-3.haw-dialog:not(.-noedge) > *:first-child {
     margin-top: 1rem; }
-  .haw-vbox.-g-3 > *:not(:last-child) {
+  .haw-vbox.-g-3 > *:not(:last-child), .-g-3.haw-dialog > *:not(:last-child) {
     margin-bottom: 1rem; }
-  .haw-vbox.-g-3:not(.-noedge) > *:last-child {
+  .haw-vbox.-g-3:not(.-noedge) > *:last-child, .-g-3.haw-dialog:not(.-noedge) > *:last-child {
     margin-bottom: 1rem; }
-  .haw-vbox.-g-3:not(.-noedge) > * {
+  .haw-vbox.-g-3:not(.-noedge) > *, .-g-3.haw-dialog:not(.-noedge) > * {
     margin-left: 1rem;
     margin-right: 1rem; }
-  .haw-vbox.-g-4:not(.-noedge) > *:first-child {
+  .haw-vbox.-g-4:not(.-noedge) > *:first-child, .-g-4.haw-dialog:not(.-noedge) > *:first-child {
     margin-top: 2rem; }
-  .haw-vbox.-g-4 > *:not(:last-child) {
+  .haw-vbox.-g-4 > *:not(:last-child), .-g-4.haw-dialog > *:not(:last-child) {
     margin-bottom: 2rem; }
-  .haw-vbox.-g-4:not(.-noedge) > *:last-child {
+  .haw-vbox.-g-4:not(.-noedge) > *:last-child, .-g-4.haw-dialog:not(.-noedge) > *:last-child {
     margin-bottom: 2rem; }
-  .haw-vbox.-g-4:not(.-noedge) > * {
+  .haw-vbox.-g-4:not(.-noedge) > *, .-g-4.haw-dialog:not(.-noedge) > * {
     margin-left: 2rem;
     margin-right: 2rem; }
-  .haw-vbox.-g-5:not(.-noedge) > *:first-child {
+  .haw-vbox.-g-5:not(.-noedge) > *:first-child, .-g-5.haw-dialog:not(.-noedge) > *:first-child {
     margin-top: 4rem; }
-  .haw-vbox.-g-5 > *:not(:last-child) {
+  .haw-vbox.-g-5 > *:not(:last-child), .-g-5.haw-dialog > *:not(:last-child) {
     margin-bottom: 4rem; }
-  .haw-vbox.-g-5:not(.-noedge) > *:last-child {
+  .haw-vbox.-g-5:not(.-noedge) > *:last-child, .-g-5.haw-dialog:not(.-noedge) > *:last-child {
     margin-bottom: 4rem; }
-  .haw-vbox.-g-5:not(.-noedge) > * {
+  .haw-vbox.-g-5:not(.-noedge) > *, .-g-5.haw-dialog:not(.-noedge) > * {
     margin-left: 4rem;
     margin-right: 4rem; }
+
+.haw-scrim {
+  display: block;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.54);
+  overflow: hidden; }
+  .haw-scrim.-run {
+    transition: opacity 0.2s linear; }
+  .haw-scrim.-created {
+    opacity: 0; }
+  .haw-scrim.-removed {
+    opacity: 0; }
+  .haw-scrim.-for-spinner {
+    background-color: rgba(255, 255, 255, 0.26); }
+
+.haw--suspended-by-scrim, .haw--suspended-by-scrim body {
+  overflow: hidden; }
+
+.haw-dialog {
+  background-color: white;
+  border-radius: 0.25rem;
+  max-width: 80%;
+  max-height: 95%;
+  width: 24rem;
+  position: absolute;
+  overflow: hidden;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); }
+  .haw-scrim.-run > .haw-dialog {
+    transition: transform 0.2s ease-in-out, opacity 0.2s linear; }
+  .haw-scrim.-created > .haw-dialog {
+    transform: translate(-50%, 50%);
+    opacity: 0; }
+  .haw-scrim.-removed > .haw-dialog {
+    transform: translate(-50%, 50%);
+    opacity: 0; }
+  .haw-dialog.-size-small {
+    width: 16rem; }
+  .haw-dialog.-size-large {
+    width: 40rem; }
+  .haw-dialog.-size-xlarge {
+    width: 90%; }
+  .haw-dialog.-size-full {
+    max-width: 40rem;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%); }
