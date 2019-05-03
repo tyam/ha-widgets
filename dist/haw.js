@@ -283,13 +283,13 @@
         var id = _ref.id,
             _ref$closeOnClick = _ref.closeOnClick,
             closeOnClick = _ref$closeOnClick === void 0 ? true : _ref$closeOnClick,
-            _ref$forSpinner = _ref.forSpinner,
-            forSpinner = _ref$forSpinner === void 0 ? false : _ref$forSpinner,
+            _ref$light = _ref.light,
+            light = _ref$light === void 0 ? false : _ref$light,
             _ref$classes = _ref.classes,
             classes = _ref$classes === void 0 ? {} : _ref$classes,
             _ref$style = _ref.style,
             style = _ref$style === void 0 ? {} : _ref$style,
-            props = _objectWithoutProperties(_ref, ["id", "closeOnClick", "forSpinner", "classes", "style"]);
+            props = _objectWithoutProperties(_ref, ["id", "closeOnClick", "light", "classes", "style"]);
 
         views[id] = function (zIndex, actions) {
           if (closeOnClick) {
@@ -305,7 +305,7 @@
             tagName: "div",
             classes: _objectSpread({
               "haw-scrim": true,
-              "-for-spinner": forSpinner
+              "-light": light
             }, classes),
             key: id,
             id: id,

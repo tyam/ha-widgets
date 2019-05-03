@@ -19,7 +19,7 @@ export const view11 = (state, actions) => {
           </HBox>
         </Dialog>
       </Scrim>
-      <Scrim id="spinner">
+      <Scrim id="spinner" light>
         <Spinner />
       </Scrim>
       {viewHaw(state, actions)}

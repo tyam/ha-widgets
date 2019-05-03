@@ -21,7 +21,8 @@
       shape: "open",
       targetId: "modal"
     }, "OK")))), hyperapp.h(haw.Scrim, {
-      id: "spinner"
+      id: "spinner",
+      light: true
     }, hyperapp.h(haw.Spinner, null)), haw.viewHaw(state, actions));
   };
 

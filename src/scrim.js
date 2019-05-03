@@ -20,7 +20,7 @@ const Scrim = (() => {
       {
         id, 
         closeOnClick = true, 
-        forSpinner = false, 
+        light = false, 
         classes = {}, 
         style = {}, 
         ...props
@@ -35,7 +35,7 @@ const Scrim = (() => {
       }
       //console.log('Scrim.renderIt', id)
       return (
-        <VBox tagName="div" classes={{"haw-scrim":true, "-for-spinner":forSpinner, ...classes}} key={id} id={id} style={{zIndex, ...style}} oncreate={el => (suspendOtherSurfaces(), onCreate(el))} onremove={(el, done) => (resumeOtherSurfaces(), onRemove(el, done))} {...props}>
+        <VBox tagName="div" classes={{"haw-scrim":true, "-light":light, ...classes}} key={id} id={id} style={{zIndex, ...style}} oncreate={el => (suspendOtherSurfaces(), onCreate(el))} onremove={(el, done) => (resumeOtherSurfaces(), onRemove(el, done))} {...props}>
           {children}
         </VBox>
       )

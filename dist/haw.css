@@ -273,7 +273,7 @@
     opacity: 0; }
   .haw-scrim.-removed {
     opacity: 0; }
-  .haw-scrim.-for-spinner {
+  .haw-scrim.-light {
     background-color: rgba(255, 255, 255, 0.26); }
 
 .haw--suspended-by-scrim, .haw--suspended-by-scrim body {
@@ -327,12 +327,12 @@
   0% {
     transform: rotate(0deg);
     animation-timing-function: cubic-bezier(0.6, 0, 0.82, 0.49); }
-  49.9% {
+  49.99% {
     transform: rotate(180deg); }
   50% {
     transform: rotate(180deg);
     animation-timing-function: cubic-bezier(0.18, 0.51, 0.4, 1); }
-  99.9% {
+  99.99% {
     transform: rotate(360deg); } }
 
 .haw-button {
@@ -795,7 +795,7 @@
     opacity: 0; }
   .haw-scrim.-removed {
     opacity: 0; }
-  .haw-scrim.-for-spinner {
+  .haw-scrim.-light {
     background-color: rgba(255, 255, 255, 0.26); }
 
 .haw--suspended-by-scrim, .haw--suspended-by-scrim body {
@@ -849,10 +849,10 @@
   0% {
     transform: rotate(0deg);
     animation-timing-function: cubic-bezier(0.6, 0, 0.82, 0.49); }
-  49.9% {
+  49.99% {
     transform: rotate(180deg); }
   50% {
     transform: rotate(180deg);
     animation-timing-function: cubic-bezier(0.18, 0.51, 0.4, 1); }
-  99.9% {
+  99.99% {
     transform: rotate(360deg); } }
