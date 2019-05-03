@@ -1,0 +1,21 @@
+
+@mixin gh($n) {
+    &:not(.-noedge) > *:first-child { margin-left: $n; }
+    & > *:not(:last-child) { margin-right: $n; }
+    &:not(.-noedge) > *:last-child { margin-right: $n; }
+    &:not(.-noedge) > * { margin-top: $n; margin-bottom: $n; }
+}
+
+.haw-hbox {
+    @extend .haw-layout;
+    flex-direction: row;
+    &.-scrollable {
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    &.-g-1 { @include gh($m1); }
+    &.-g-2 { @include gh($m2); }
+    &.-g-3 { @include gh($m3); }
+    &.-g-4 { @include gh($m4); }
+    &.-g-5 { @include gh($m5); }
+}

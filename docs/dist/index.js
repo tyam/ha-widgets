@@ -5,7 +5,11 @@
 }(this, function (exports, hyperapp, haw) { 'use strict';
 
   var view11 = function view11(state, actions) {
-    return hyperapp.h(haw.Button, null, "OK");
+    return hyperapp.h(haw.VBox, null, hyperapp.h(haw.HBox, null, hyperapp.h(haw.Button, null, "Button 1"), hyperapp.h(haw.Button, {
+      shape: "contained"
+    }, "Button 2"), hyperapp.h(haw.Button, {
+      shape: "open"
+    }, "Button 3")));
   };
 
   exports.view11 = view11;

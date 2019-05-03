@@ -185,6 +185,62 @@
       return hyperapp.h(tagName, props, any);
     };
 
+    var HBox = function HBox(_ref, children) {
+      var _ref$justify = _ref.justify,
+          justify = _ref$justify === void 0 ? 'start' : _ref$justify,
+          _ref$alignItems = _ref.alignItems,
+          alignItems = _ref$alignItems === void 0 ? 'stretch' : _ref$alignItems,
+          _ref$g = _ref.g,
+          g = _ref$g === void 0 ? 0 : _ref$g,
+          _ref$noedge = _ref.noedge,
+          noedge = _ref$noedge === void 0 ? false : _ref$noedge,
+          _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          _ref$scrollable = _ref.scrollable,
+          scrollable = _ref$scrollable === void 0 ? false : _ref$scrollable,
+          others = _objectWithoutProperties(_ref, ["justify", "alignItems", "g", "noedge", "classes", "scrollable"]);
+
+      return hyperapp.h(Component, _extends({
+        tagName: "div",
+        classes: _objectSpread({
+          "haw-hbox": true,
+          "-scrollable": scrollable,
+          "-justify": justify,
+          "-align-items": alignItems,
+          "-g": g,
+          "-noedge": noedge
+        }, classes)
+      }, others), children);
+    };
+
+    var VBox = function VBox(_ref, children) {
+      var _ref$justify = _ref.justify,
+          justify = _ref$justify === void 0 ? 'start' : _ref$justify,
+          _ref$alignItems = _ref.alignItems,
+          alignItems = _ref$alignItems === void 0 ? 'stretch' : _ref$alignItems,
+          _ref$g = _ref.g,
+          g = _ref$g === void 0 ? 0 : _ref$g,
+          _ref$noedge = _ref.noedge,
+          noedge = _ref$noedge === void 0 ? false : _ref$noedge,
+          _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          _ref$scrollable = _ref.scrollable,
+          scrollable = _ref$scrollable === void 0 ? false : _ref$scrollable,
+          others = _objectWithoutProperties(_ref, ["justify", "alignItems", "g", "noedge", "classes", "scrollable"]);
+
+      return hyperapp.h(Component, _extends({
+        tagName: "div",
+        classes: _objectSpread({
+          "haw-vbox": true,
+          "-scrollable": scrollable,
+          "-align-items": alignItems,
+          "-justify": justify,
+          "-g": g,
+          "-noedge": noedge
+        }, classes)
+      }, others), children);
+    };
+
     var Button = function Button(_ref, contents) {
       var _ref$coloring = _ref.coloring,
           coloring = _ref$coloring === void 0 ? 'default' : _ref$coloring,
@@ -222,6 +278,8 @@
 
     exports.Button = Button;
     exports.Component = Component;
+    exports.HBox = HBox;
+    exports.VBox = VBox;
     exports.bcs = bcs;
     exports.doNothing = doNothing;
     exports.onCreate = onCreate;
