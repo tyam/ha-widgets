@@ -23,61 +23,6 @@ $px1: 0.0625 * $rem;
                 0 (15 * $px1) (12 * $px1) rgba(#000, 0.22);
 }
 
-@mixin gutter($axis, $num, $dire, $val) {
-    &.-g#{$axis}-#{$num} > *:not(:last-child) { margin-#{$dire}: $val; }
-}
-@mixin margin($axis, $num, $dire1, $dire2, $val) {
-    &.-m#{$axis}-#{$num} > *:first-child { margin-#{$dire1}: $val; }
-    &.-m#{$axis}-#{$num} > *:last-child { margin-#{$dire2}: $val; }
-}
-@mixin margin-all($axis, $num, $dire1, $dire2, $val) {
-    &.-m#{$axis}-#{$num} > * {
-        margin-#{$dire1}: $val;
-        margin-#{$dire2}: $val;
-        & > .hw--m0 {
-            margin-#{$dire1}: -1 * $val;
-            margin-#{$dire2}: -1 * $val;
-            width: calc(100% + #{2 * $val});
-        }
-    }
-}
-
-.hw-h-layout {
-    @include gutter(x, 1, right, $m1);
-    @include gutter(x, 2, right, $m2);
-    @include gutter(x, 3, right, $m3);
-    @include gutter(x, 4, right, $m4);
-    @include gutter(x, 5, right, $m5);
-    @include margin(x, 1, left, right, $m1);
-    @include margin(x, 2, left, right, $m2);
-    @include margin(x, 3, left, right, $m3);
-    @include margin(x, 4, left, right, $m4);
-    @include margin(x, 5, left, right, $m5);
-    @include margin-all(y, 1, top, bottom, $m1);
-    @include margin-all(y, 2, top, bottom, $m2);
-    @include margin-all(y, 3, top, bottom, $m3);
-    @include margin-all(y, 4, top, bottom, $m4);
-    @include margin-all(y, 5, top, bottom, $m5);
-}
-
-.hw-v-layout {
-    @include gutter(y, 1, bottom, $m1);
-    @include gutter(y, 2, bottom, $m2);
-    @include gutter(y, 3, bottom, $m3);
-    @include gutter(y, 4, bottom, $m4);
-    @include gutter(y, 5, bottom, $m5);
-    @include margin(y, 1, top, bottom, $m1);
-    @include margin(y, 2, top, bottom, $m2);
-    @include margin(y, 3, top, bottom, $m3);
-    @include margin(y, 4, top, bottom, $m4);
-    @include margin(y, 5, top, bottom, $m5);
-    @include margin-all(x, 1, left, right, $m1);
-    @include margin-all(x, 2, left, right, $m2);
-    @include margin-all(x, 3, left, right, $m3);
-    @include margin-all(x, 4, left, right, $m4);
-    @include margin-all(x, 5, left, right, $m5);
-}
-
 
 @mixin emittable() {
     position: relative;
@@ -109,39 +54,6 @@ $px1: 0.0625 * $rem;
 }
 
 
-@mixin when-wider($bp) {
-    @media screen and (min-width: $bp) {
-        @content;
-    }
-}
-@mixin when-between($minbp, $maxbp) {
-    @media screen and (min-width: $minbp) and (max-width: $maxbp) {
-        @content;
-    }
-}
-
-@mixin gutx($n) {
-    &:not(.-noedge) > *:not(.haw--nogut):first-child { margin-left: $n; }
-    &:not(.-noedge) > *:not(.haw--nogut):last-child { margin-right: $n; }
-    & > *:not(.haw--nogut) { margin-right: $n; }
-}
-@mixin gutyall($n) {
-    & > *:not(.haw--nogut) { margin-top: $n; margin-bottom: $n; }
-}
-@mixin guty($n) {
-    &:not(.-noedge) > *:not(.haw--nogut):first-child { margin-top: $n; }
-    &:not(.-noedge) > *:not(.haw--nogut):last-child { margin-bottom: $n; }
-    & > *:not(.haw--nogut) { margin-bottom: $n; }
-}
-@mixin gutxall($n) {
-    & > *:not(.haw--nogut) { margin-left: $n; margin-right: $n; }
-}
-
-.haw-ie11-workaround {
-    display: flex;
-    flex-direction: row;
-}
-
 .haw-component {
     display: block;
     flex: 0 0 auto;
@@ -149,6 +61,8 @@ $px1: 0.0625 * $rem;
     padding: 0;
     width: auto;
     height: auto;
+    font-family: $font-family;
+    font-size: $font-size;
     &.-growable {
         flex-grow: 1;
         flex-shrink: 1;

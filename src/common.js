@@ -1,14 +1,6 @@
 
 const effectDuration = 350;
 
-/*export const bcs = (el, opts, cls) => {
-  let cs = el + ' '
-  for (const key in opts) {
-    cs += el + '--' + opts[key] + ' '
-  }
-  return cs + cls
-}*/
-
 export const bcs = (props) => {
   let cs = ""
   for (const key in props) {

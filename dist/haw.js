@@ -5,14 +5,6 @@
 }(this, function (exports, hyperapp) { 'use strict';
 
     var effectDuration = 350;
-    /*export const bcs = (el, opts, cls) => {
-      let cs = el + ' '
-      for (const key in opts) {
-        cs += el + '--' + opts[key] + ' '
-      }
-      return cs + cls
-    }*/
-
     var bcs = function bcs(props) {
       var cs = "";
 
