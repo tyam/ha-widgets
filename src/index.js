@@ -16,6 +16,7 @@ import '../sass/_echo.scss';
 import '../sass/_fileinput.scss';
 import '../sass/_textarea.scss';
 import '../sass/_textinput.scss';
+import '../sass/_dropdown.scss';
 import '../sass/_button.scss';
 
 import './polyfill';
@@ -41,7 +42,8 @@ export { default as Echo } from './echo';
 export { default as FileInput } from './fileinput';
 export { default as Radio } from './radio';
 export { default as TextArea } from './textarea';
-export { default as TextInput } from './textinput';
+export { default as TextInput } from './textinput'; 
+export { default as Dropdown } from './dropdown';
 export { default as Button } from './button';
 
 export const state = {

@@ -1010,6 +1010,46 @@
       }, props));
     };
 
+    var Dropdown = function Dropdown(_ref, contents) {
+      var _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          _ref$placeholder = _ref.placeholder,
+          placeholder = _ref$placeholder === void 0 ? "" : _ref$placeholder,
+          _ref$invalid = _ref.invalid,
+          invalid = _ref$invalid === void 0 ? false : _ref$invalid,
+          _ref$disabled = _ref.disabled,
+          disabled = _ref$disabled === void 0 ? false : _ref$disabled,
+          _ref$doDelay = _ref.doDelay,
+          doDelay = _ref$doDelay === void 0 ? false : _ref$doDelay,
+          _ref$onclick = _ref.onclick,
+          onclick = _ref$onclick === void 0 ? null : _ref$onclick,
+          others = _objectWithoutProperties(_ref, ["classes", "placeholder", "invalid", "disabled", "doDelay", "onclick"]);
+
+      return function (state, actions) {
+        var placeheld = false;
+
+        if (contents.length == 0) {
+          contents = placeholder;
+          placeheld = true;
+        }
+
+        return hyperapp.h(Component, _extends({
+          tagName: "button",
+          classes: _objectSpread({
+            "haw-dropdown": true,
+            "-placeheld": placeheld,
+            "-invalid": invalid
+          }, classes),
+          disabled: disabled,
+          onclick: onEmit(onclick, doDelay, null)
+        }, others), contents, hyperapp.h("span", {
+          className: "caret"
+        }));
+      };
+    };
+
+    var dropdown = Popup.Trigger(Dropdown);
+
     var Button = function Button(_ref, contents) {
       var _ref$coloring = _ref.coloring,
           coloring = _ref$coloring === void 0 ? 'default' : _ref$coloring,
@@ -1062,6 +1102,7 @@
     exports.Checkbox = Checkbox;
     exports.Component = Component;
     exports.Dialog = Dialog;
+    exports.Dropdown = dropdown;
     exports.Echo = Echo;
     exports.FileInput = FileInput;
     exports.HBox = HBox;

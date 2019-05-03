@@ -47,6 +47,20 @@
     }, hyperapp.h(haw.Echo, null, "Echo")), hyperapp.h(haw.HBox, {
       g: "2",
       noedge: true
+    }, hyperapp.h(haw.Dropdown, {
+      id: "dd1",
+      targetId: "menu"
+    }), hyperapp.h(haw.Dropdown, {
+      id: "dd2",
+      targetId: "menu",
+      invalid: true
+    }), hyperapp.h(haw.Dropdown, {
+      id: "dd3",
+      targetId: "menu",
+      disabled: true
+    })), hyperapp.h(haw.HBox, {
+      g: "2",
+      noedge: true
     }, hyperapp.h(haw.FileInput, {
       id: "fi1"
     }), hyperapp.h(haw.FileInput, {

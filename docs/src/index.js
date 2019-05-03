@@ -1,5 +1,5 @@
 import { h } from 'hyperapp';
-import { Button, HBox, VBox, Scrim, Dialog, Spinner, Popup, Menu, TextInput, TextArea, Echo, Checkbox, Radio, FileInput, viewHaw } from 'haw';
+import { Button, HBox, VBox, Scrim, Dialog, Spinner, Popup, Menu, TextInput, TextArea, Echo, Checkbox, Radio, FileInput, Dropdown, viewHaw } from 'haw';
 
 const ScrimButton = Scrim.Trigger(Button);
 const PopupButton = Popup.Trigger(Button);
@@ -26,6 +26,11 @@ export const view11 = (state, actions) => {
       </HBox>
       <HBox g="2" noedge>
         <Echo>Echo</Echo> 
+      </HBox>
+      <HBox g="2" noedge>
+        <Dropdown id="dd1" targetId="menu" />
+        <Dropdown id="dd2" targetId="menu" invalid />
+        <Dropdown id="dd3" targetId="menu" disabled />
       </HBox>
       <HBox g="2" noedge>
         <FileInput id="fi1" />

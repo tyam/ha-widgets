@@ -1,0 +1,65 @@
+
+
+.haw-dropdown {
+    @extend .haw-component;
+    height: $input-height;
+    line-height: ($input-height - 2 * $border);
+    background-clip: border-box;
+    border-style: solid;
+    border-width: $border 0;
+    border-color: transparent;
+    border-bottom-color: fore12();
+    padding: 0 (2 * $padding + $rem) 0 $padding;
+    outline:none;
+    text-align: left;
+    font-size: $rem;
+    font-weight: normal;
+    color: fore87();
+    box-sizing: border-box;
+    background-color: $back90;
+    @include emittable();
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    min-width: 4 * $rem;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s linear, border-color 0.2s linear;
+    &.-placeheld {
+        color: fore26();
+    }
+    & > .caret::before {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        right: $padding;
+        color: fore87();
+        font-size: $rem;
+        height: $input-height;
+        line-height: $input-height;
+        vertical-align: top;
+        font-family: "Material Icons";
+        direction: ltr;
+        font-style: normal;
+        font-weight: normal;
+        letter-spacing: normal;
+        text-transform: none;
+        white-space: nowrap;
+        word-wrap: normal;
+        -webkit-font-feature-settings: 'liga';
+        font-feature-settings: "liga";
+        -webkit-font-smoothing: antialiased;
+        content: "\e5c5";
+    }
+    &[disabled] {
+        opacity: $alpha-disabled;
+        pointer-events: none;
+        cursor: auto;
+    }
+    &.-invalid {
+        border-bottom-color: fore54(danger);
+    }
+    &:focus {
+        border-bottom-color: fore54(primary);
+    }
+}
