@@ -1,5 +1,6 @@
 import babel from 'rollup-plugin-babel';
 import scss from 'rollup-plugin-scss';
+import copy from 'rollup-plugin-copy';
 
 const configForLib = {
     input: 'src/index.js',
@@ -14,7 +15,8 @@ const configForLib = {
     }, 
     plugins: [
         babel({ exclude: "node_modules/**" }), 
-        scss({ output: "dist/haw.css" })
+        scss({ output: "dist/haw.css" }), 
+        copy({targets:{'dist':'docs/dist'}})
     ]
 }
 
