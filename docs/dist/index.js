@@ -16,7 +16,12 @@
     }, "Spinner"), hyperapp.h(PopupButton, {
       targetId: "menu",
       shape: "open"
-    }, "Popup")), hyperapp.h(haw.Scrim, {
+    }, "Popup"), hyperapp.h(haw.Button, {
+      shape: "contained",
+      onclick: function onclick() {
+        return actions.haw.snackbar.trigger('Hello Snackbar');
+      }
+    }, "Snackbar")), hyperapp.h(haw.Scrim, {
       id: "modal"
     }, hyperapp.h(haw.Dialog, null, hyperapp.h("div", null, "\u30C6\u30AD\u30B9\u30C8"), hyperapp.h(haw.HBox, {
       align: "end"

@@ -628,6 +628,91 @@
       };
     };
 
+    var Snackbar = function Snackbar() {
+      throw "direct applying not supported.";
+    };
+
+    Snackbar.view = function (state, actions) {
+      if (state.n) {
+        return hyperapp.h(VBox, {
+          key: "haw-snackbar-".concat(state.n.no),
+          classes: {
+            "haw-snackbar": true,
+            "haw--raised": 2
+          },
+          oncreate: onCreate,
+          onremove: onRemove
+        }, state.n.child);
+      } else {
+        return null;
+      }
+    };
+
+    Snackbar.state = {
+      serial: 1,
+      n: null,
+      q: []
+    };
+    Snackbar.actions = {
+      trigger: function trigger(child) {
+        return function (_ref, actions) {
+          var q = _ref.q,
+              serial = _ref.serial,
+              rest = _objectWithoutProperties(_ref, ["q", "serial"]);
+
+          var n = {
+            no: serial,
+            child: child,
+            duration: 5000
+          };
+          window.requestAnimationFrame(actions.pick);
+          return _objectSpread({
+            q: q.concat([n]),
+            serial: serial + 1
+          }, rest);
+        };
+      },
+      pick: function pick() {
+        return function (_ref2, actions) {
+          var q = _ref2.q,
+              n = _ref2.n,
+              rest = _objectWithoutProperties(_ref2, ["q", "n"]);
+
+          if (!n && q.length > 0) {
+            var n2 = q[0];
+            var q2 = q.slice(1);
+            window.setTimeout(function () {
+              return actions.dispose(n2.no);
+            }, n2.duration);
+            return _objectSpread({
+              n: n2,
+              q: q2
+            }, rest);
+          } else {
+            return null;
+          }
+        };
+      },
+      dispose: function dispose(no) {
+        return function (_ref3, actions) {
+          var q = _ref3.q,
+              n = _ref3.n,
+              rest = _objectWithoutProperties(_ref3, ["q", "n"]);
+
+          if (n && n.no === no) {
+            window.setTimeout(function () {
+              return actions.pick();
+            }, 500);
+            return _objectSpread({
+              n: null
+            }, rest);
+          } else {
+            return null;
+          }
+        };
+      }
+    };
+
     var HBox = function HBox(_ref, children) {
       var _ref$justify = _ref.justify,
           justify = _ref$justify === void 0 ? 'start' : _ref$justify,
@@ -803,14 +888,16 @@
     /* To force rollup watch all sass files */
     var state = {
       scrim: Scrim.state,
-      popup: Popup.state
+      popup: Popup.state,
+      snackbar: Snackbar.state
     };
     var actions = {
       scrim: Scrim.actions,
-      popup: Popup.actions
+      popup: Popup.actions,
+      snackbar: Snackbar.actions
     };
     var viewHaw = function viewHaw(state, actions) {
-      return [Scrim.view(state.haw.scrim, actions.haw.scrim), Popup.view(state.haw.popup, actions.haw.popup)];
+      return [Scrim.view(state.haw.scrim, actions.haw.scrim), Popup.view(state.haw.popup, actions.haw.popup), Snackbar.view(state.haw.snackbar, actions.haw.snackbar)];
     };
 
     exports.Button = Button;
@@ -820,6 +907,7 @@
     exports.Menu = Menu;
     exports.Popup = Popup;
     exports.Scrim = Scrim;
+    exports.Snackbar = Snackbar;
     exports.Spinner = Spinner;
     exports.VBox = VBox;
     exports.actions = actions;

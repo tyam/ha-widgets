@@ -12,6 +12,7 @@ export const view11 = (state, actions) => {
         <ScrimButton targetId="modal">Modal</ScrimButton>
         <ScrimButton targetId="spinner" shape="contained">Spinner</ScrimButton>
         <PopupButton targetId="menu" shape="open">Popup</PopupButton>
+        <Button shape="contained" onclick={() => actions.haw.snackbar.trigger('Hello Snackbar')}>Snackbar</Button>
       </HBox>
       <Scrim id="modal">
         <Dialog>
