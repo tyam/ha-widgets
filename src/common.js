@@ -59,3 +59,6 @@ export const onEmit = (listener, doDelay, resolve) => (ev) => {
 }
 
 export const parent = el => el.parentElement
+
+export const windowOffsetX = () => (window.scrollX || window.pageXOffset)
+export const windowOffsetY = () => (window.scrollY || window.pageYOffset)

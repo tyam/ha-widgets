@@ -1,7 +1,9 @@
 import { h } from 'hyperapp';
-import { Button, HBox, VBox, Scrim, Dialog, Spinner, viewHaw } from 'haw';
+import { Button, HBox, VBox, Scrim, Dialog, Spinner, Popup, Menu, viewHaw } from 'haw';
 
 const ScrimButton = Scrim.Trigger(Button);
+const PopupButton = Popup.Trigger(Button);
+const PopupMenuItem = Popup.Trigger(Menu.Item);
 
 export const view11 = (state, actions) => {
   return (
@@ -9,7 +11,7 @@ export const view11 = (state, actions) => {
       <HBox>
         <ScrimButton targetId="modal">Modal</ScrimButton>
         <ScrimButton targetId="spinner" shape="contained">Spinner</ScrimButton>
-        <Button shape="open">Button 3</Button>
+        <PopupButton targetId="menu" shape="open">Popup</PopupButton>
       </HBox>
       <Scrim id="modal">
         <Dialog>
@@ -22,6 +24,12 @@ export const view11 = (state, actions) => {
       <Scrim id="spinner" light>
         <Spinner />
       </Scrim>
+      <Popup id="menu">
+        <Menu >
+          <PopupMenuItem id="m1" doDelay>Item 1</PopupMenuItem>
+          <PopupMenuItem id="m2" doDelay>Item 2</PopupMenuItem>
+        </Menu>
+      </Popup>
       {viewHaw(state, actions)}
     </VBox>
   )

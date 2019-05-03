@@ -205,6 +205,12 @@
     var parent = function parent(el) {
       return el.parentElement;
     };
+    var windowOffsetX = function windowOffsetX() {
+      return window.scrollX || window.pageXOffset;
+    };
+    var windowOffsetY = function windowOffsetY() {
+      return window.scrollY || window.pageYOffset;
+    };
 
     var Component = function Component(_ref, any) {
       var tagName = _ref.tagName,
@@ -384,6 +390,244 @@
       };
     };
 
+    var placePopup = function placePopup(el, base, place) {
+      var rect = base;
+      var ww = window.innerWidth;
+      var wh = window.innerHeight;
+      var ew = el.offsetWidth;
+      var eh = el.offsetHeight;
+      var scrX = windowOffsetX();
+      var scrY = windowOffsetY();
+
+      var calcLeft = function calcLeft(k) {
+        if (rect.left >= 0 && rect.left + ew <= ww) {
+          // 左寄せでおさまる
+          return k(rect.left + scrX, "left");
+        } else if (rect.left + rect.width <= ww && rect.left + rect.width - ew >= 0) {
+          // 右寄せでおさまる
+          return k(rect.left + rect.width - ew + scrX, "right");
+        } else if (ww >= ew) {
+          // 中央寄せでおさまる
+          return k((ww - ew) / 2 + scrX, "center");
+        } else {
+          return k(scrX, "center");
+        }
+      };
+
+      var calcTop = function calcTop(k) {
+        if (rect.bottom >= 0 && rect.bottom + eh <= wh) {
+          // 下表示でおさまる
+          return k(rect.bottom + scrY, "top");
+        } else if (rect.top <= wh && rect.top - eh >= 0) {
+          // 上表示でおさまる
+          return k(rect.top - eh + scrY, "bottom");
+        } else if (wh >= eh) {
+          // 上下中央でおさまる
+          return k((wh - eh) / 2 + scrY, "center");
+        } else {
+          return k(scrY, "center");
+        }
+      };
+
+      calcLeft(function (left, alignX) {
+        calcTop(function (top, alignY) {
+          window.requestAnimationFrame(function () {
+            place({
+              left: left + "px",
+              top: top + "px",
+              opacity: 1,
+              transformOrigin: alignY + ' ' + alignX
+            });
+          });
+        });
+      });
+    };
+
+    var suspendOtherSurfaces$1 = function suspendOtherSurfaces() {
+      if (!document.documentElement.classList.contains('haw--suspended-by-popup')) {
+        document.documentElement.classList.add('haw--suspended-by-popup');
+      }
+    };
+
+    var resumeOtherSurfaces$1 = function resumeOtherSurfaces() {
+      if (document.documentElement.classList.contains('haw--suspended-by-popup')) {
+        window.setTimeout(function () {
+          return document.documentElement.classList.remove('haw--suspended-by-popup');
+        }, 300);
+      }
+    };
+
+    var Popup = function () {
+      var views = {};
+      var initialized = false;
+
+      var Popup = function Popup(_ref, children) {
+        var id = _ref.id,
+            _ref$raised = _ref.raised,
+            raised = _ref$raised === void 0 ? 1 : _ref$raised,
+            _ref$classes = _ref.classes,
+            classes = _ref$classes === void 0 ? {} : _ref$classes,
+            _ref$style = _ref.style,
+            style = _ref$style === void 0 ? {} : _ref$style,
+            props = _objectWithoutProperties(_ref, ["id", "raised", "classes", "style"]);
+
+        views[id] = function (style0, base, actions) {
+          if (!style0) {
+            style0 = {
+              opacity: 0,
+              left: 0,
+              top: 0
+            };
+          }
+
+          var composedStyle = _objectSpread({}, style0, style);
+
+          return hyperapp.h(VBox, _extends({
+            classes: _objectSpread({
+              "haw-popup": true,
+              "haw--raised": raised
+            }, classes),
+            key: id,
+            id: id
+          }, props, {
+            style: composedStyle,
+            oncreate: function oncreate(el) {
+              return suspendOtherSurfaces$1(), onCreate(el), placePopup(el, base, actions.place);
+            },
+            onremove: function onremove(el, done) {
+              return resumeOtherSurfaces$1(), onRemove(el, done);
+            }
+          }), children);
+        };
+      };
+
+      Popup.state = {
+        id: null,
+        style: null,
+        base: null
+      };
+      Popup.actions = {
+        place: function place(style) {
+          return function (state, actions) {
+            return {
+              style: style,
+              id: state.id,
+              base: state.base
+            };
+          };
+        },
+        open: function open(_ref2) {
+          var id = _ref2.id,
+              base = _ref2.base;
+          return function (state, actions) {
+            return {
+              id: id,
+              base: base,
+              style: null
+            };
+          };
+        },
+        close: function close() {
+          return function (state, actions) {
+            if (!state.id) return null;
+            return {
+              id: null,
+              style: null,
+              base: null
+            };
+          };
+        },
+        autoclose: function autoclose(ev) {
+          return function (state, actions) {
+            function isPopupElement(el) {
+              for (var e = el; e != null; e = e.parentElement) {
+                if (e.classList.contains('haw-popup')) {
+                  return true;
+                }
+              }
+
+              return false;
+            }
+
+            if (state.id == null || isPopupElement(ev.target)) {
+              // no effect
+              return null;
+            } // 他ビューのクリックによりポップアップを消す
+
+
+            return {
+              id: null,
+              style: null,
+              base: null
+            };
+          };
+        }
+      };
+
+      Popup.view = function (state, actions) {
+        if (!initialized) {
+          document.body.addEventListener('click', actions.autoclose); // 他箇所のクリックを検知するために。
+
+          if (/iphone|ipod|ipad/.test(navigator.userAgent.toLowerCase())) {
+            document.body.style.cursor = 'pointer';
+          }
+
+          initialized = true;
+        }
+
+        var vdom = null;
+
+        if (state.id) {
+          vdom = views[state.id](state.style, state.base, actions);
+        }
+
+        views = {};
+        return vdom;
+      };
+
+      return Popup;
+    }();
+
+    Popup.Trigger = function (Component) {
+      return function (_ref3, children) {
+        var targetId = _ref3.targetId,
+            original = _ref3.onclick,
+            props = _objectWithoutProperties(_ref3, ["targetId", "onclick"]);
+
+        return function (state, actions) {
+          var onclick = null;
+
+          if (state.haw.popup.id == targetId) {
+            // close now
+            if (original) {
+              onclick = function onclick(x) {
+                original(x);
+                actions.haw.popup.close();
+              };
+            } else {
+              onclick = actions.haw.popup.close;
+            }
+          } else {
+            // invoke later (after current event cycle)
+            onclick = function onclick(ev) {
+              return window.requestAnimationFrame(function () {
+                var rect = ev.target.getBoundingClientRect();
+                actions.haw.popup.open({
+                  id: targetId,
+                  base: rect
+                });
+                if (original) original(ev);
+              });
+            };
+          }
+
+          return hyperapp.h(Component, _extends({
+            onclick: onclick
+          }, props), children);
+        };
+      };
+    };
+
     var HBox = function HBox(_ref, children) {
       var _ref$justify = _ref.justify,
           justify = _ref$justify === void 0 ? 'start' : _ref$justify,
@@ -463,6 +707,66 @@
       })));
     };
 
+    var Menu = function Menu(_ref, children) {
+      var _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          others = _objectWithoutProperties(_ref, ["classes"]);
+
+      return hyperapp.h(VBox, _extends({
+        classes: _objectSpread({
+          "haw-menu": true
+        }, classes)
+      }, others), children);
+    };
+
+    Menu.Item = function (_ref2, contents) {
+      var id = _ref2.id,
+          _ref2$type = _ref2.type,
+          type = _ref2$type === void 0 ? 'button' : _ref2$type,
+          _ref2$doDelay = _ref2.doDelay,
+          doDelay = _ref2$doDelay === void 0 ? false : _ref2$doDelay,
+          _ref2$onclick = _ref2.onclick,
+          onclick = _ref2$onclick === void 0 ? null : _ref2$onclick,
+          _ref2$onchange = _ref2.onchange,
+          onchange = _ref2$onchange === void 0 ? null : _ref2$onchange,
+          _ref2$classes = _ref2.classes,
+          classes = _ref2$classes === void 0 ? {} : _ref2$classes,
+          others = _objectWithoutProperties(_ref2, ["id", "type", "doDelay", "onclick", "onchange", "classes"]);
+
+      if (type == 'button') {
+        onclick = onEmit(onclick, doDelay, parent);
+      } else {
+        onchange = onEmit(onchange, doDelay, parent);
+      }
+
+      return hyperapp.h(Component, {
+        tagName: "div",
+        classes: _objectSpread({
+          "haw-menu-item": true
+        }, classes)
+      }, hyperapp.h("input", _extends({
+        type: type,
+        id: id,
+        onclick: onclick,
+        onchange: onchange
+      }, others)), hyperapp.h("label", {
+        htmlFor: id
+      }, contents));
+    };
+
+    Menu.Divider = function (_ref3) {
+      var _ref3$classes = _ref3.classes,
+          classes = _ref3$classes === void 0 ? {} : _ref3$classes,
+          others = _objectWithoutProperties(_ref3, ["classes"]);
+
+      return hyperapp.h(Component, _extends({
+        tagName: "hr",
+        classes: _objectSpread({
+          "haw-menu-divider": true
+        }, classes)
+      }, others));
+    };
+
     var Button = function Button(_ref, contents) {
       var _ref$coloring = _ref.coloring,
           coloring = _ref$coloring === void 0 ? 'default' : _ref$coloring,
@@ -498,19 +802,23 @@
 
     /* To force rollup watch all sass files */
     var state = {
-      scrim: Scrim.state
+      scrim: Scrim.state,
+      popup: Popup.state
     };
     var actions = {
-      scrim: Scrim.actions
+      scrim: Scrim.actions,
+      popup: Popup.actions
     };
     var viewHaw = function viewHaw(state, actions) {
-      return [Scrim.view(state.haw.scrim, actions.haw.scrim)];
+      return [Scrim.view(state.haw.scrim, actions.haw.scrim), Popup.view(state.haw.popup, actions.haw.popup)];
     };
 
     exports.Button = Button;
     exports.Component = Component;
     exports.Dialog = Dialog;
     exports.HBox = HBox;
+    exports.Menu = Menu;
+    exports.Popup = Popup;
     exports.Scrim = Scrim;
     exports.Spinner = Spinner;
     exports.VBox = VBox;
@@ -523,6 +831,8 @@
     exports.parent = parent;
     exports.state = state;
     exports.viewHaw = viewHaw;
+    exports.windowOffsetX = windowOffsetX;
+    exports.windowOffsetY = windowOffsetY;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

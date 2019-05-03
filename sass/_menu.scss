@@ -1,0 +1,94 @@
+
+.haw-menu {
+    @extend .haw-vbox;
+    padding: $spacing 0;
+}
+
+.haw-menu-item {
+    @extend .haw-component;
+    height: $input-height;
+    overflow: hidden;
+    white-space: nowrap;
+    @include emittable();
+    position: relative;
+    & > input {
+        width: 1px;
+        height: 1px;
+        overflow:hidden;
+        position: absolute;
+        opacity: 0;
+    }
+    & > input + label {
+        display: block;
+        box-sizing: border-box;
+        height: $input-height;
+        line-height: $input-height;
+        width: 100%;
+        color: fore87();
+        border: none;
+        background-color: transparent;
+        padding-right: $blank;
+        padding-left: $blank + $rem + $padding;
+        border-style: solid;
+        border-width: $border 0;
+        border-color: transparent;
+        transition: background-color 0.2s linear, border-color 0.2s linear;
+    }
+    & > input:disabled + label {
+        opacity: $alpha-disabled;
+        pointer-events: none;
+    }
+    & > input:not(:disabled) + label:hover {
+        background-color: $back12-primary;
+    }
+    & > input + label::before {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: $blank;
+        font-size: $rem;
+        height: $input-height;
+        line-height: $input-height;
+        color: fore87();
+        font-family: "Material Icons";
+        direction: ltr;
+        font-style: normal;
+        font-weight: normal;
+        letter-spacing: normal;
+        text-transform: none;
+        white-space: nowrap;
+        word-wrap: normal;
+        -webkit-font-feature-settings: 'liga';
+        font-feature-settings: "liga";
+        -webkit-font-smoothing: antialiased;
+        margin-right: $spacing;
+    }
+    &.-invalid > input + label::before {
+        color: fore54(danger);
+    }
+    & > input:not(:checked) + label::before {
+        opacity: 0;
+    }
+    & > input[type=checkbox] + label::before {
+        content: "\e876";
+    }
+    & > input[type=radio] + label::before {
+        content: "\e061";
+    }
+    & > input[type=button] + label::before {
+        content: "\e5c3";
+    }
+}
+
+.haw-menu-divider {
+    display: block;
+    box-sizing: border-box;
+    height: $rule + 2 * $spacing;
+    border: $spacing solid transparent;
+    border-left-width: 0;
+    border-right-width: 0;
+    outline: none;
+    width: 100%;
+    background-color: fore12();
+    background-clip: content-box;
+}

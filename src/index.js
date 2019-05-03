@@ -8,13 +8,16 @@ import '../sass/_vbox.scss';
 import '../sass/_scrim.scss';
 import '../sass/_dialog.scss';
 import '../sass/_spinner.scss';
+import '../sass/_popup.scss';
+import '../sass/_menu.scss';
 import '../sass/_button.scss';
 
 import './polyfill';
 
 import Scrim from './scrim';
+import Popup from './popup';
 
-export {bcs, onCreate, onRemove, doNothing, onEmit, parent} from './common';
+export {bcs, onCreate, onRemove, doNothing, onEmit, parent, windowOffsetX, windowOffsetY} from './common';
 export { default as Component } from './component';
 
 export { default as HBox } from './hbox';
@@ -23,16 +26,21 @@ export { default as VBox } from './vbox';
 export { default as Scrim } from './scrim';
 export { default as Dialog } from './dialog';
 export { default as Spinner } from './spinner';
+export { default as Popup } from './popup';
+export { default as Menu } from './menu';
 export { default as Button } from './button';
 
 export const state = {
-  scrim: Scrim.state
+  scrim: Scrim.state, 
+  popup: Popup.state
 };
 export const actions = {
-  scrim: Scrim.actions
+  scrim: Scrim.actions, 
+  popup: Popup.actions
 }
 export const viewHaw = (state, actions) => {
   return [
-    Scrim.view(state.haw.scrim, actions.haw.scrim)
+    Scrim.view(state.haw.scrim, actions.haw.scrim), 
+    Popup.view(state.haw.popup, actions.haw.popup)
   ]
 }
