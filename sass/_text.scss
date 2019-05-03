@@ -1,0 +1,42 @@
+
+.haw-text {
+    @extend .haw-component;
+    box-sizing: border-box;
+    font-size: $rem;
+    line-height: $line-height;
+    overflow: hidden;
+    color: fore87();
+    &.-narrow {
+        line-height: $line-height-narrow;
+    }
+    &.-nowrap {
+        white-space: nowrap;
+    }
+    &.-size-large {
+        font-size: $x-large * $rem;
+    }
+    &.-size-small {
+        font-size: $x-small * $rem;
+    }
+    &.-size-nano {
+        font-size: $x-nano * $rem;
+    }
+    &.-align-left {
+        text-align: left;
+    }
+    &.-align-center {
+        text-align: center;
+    }
+    &.-align-right {
+        text-align: right;
+    }
+    &.-coloring-primary {
+        color: fore87(primary);
+    }
+    &.-coloring-danger {
+        color: fore87(danger);
+    }
+    & > * {
+        vertical-align: baseline;
+    }
+}

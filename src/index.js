@@ -18,6 +18,11 @@ import '../sass/_textarea.scss';
 import '../sass/_textinput.scss';
 import '../sass/_dropdown.scss';
 import '../sass/_button.scss';
+import '../sass/_divider.scss';
+import '../sass/_label.scss';
+import '../sass/_spacer.scss';
+import '../sass/_text.scss';
+import '../sass/_title.scss';
 
 import './polyfill';
 
@@ -45,6 +50,11 @@ export { default as TextArea } from './textarea';
 export { default as TextInput } from './textinput'; 
 export { default as Dropdown } from './dropdown';
 export { default as Button } from './button';
+export { default as Divider } from './divider';
+export { default as Label } from './label';
+export { default as Spacer } from './spacer';
+export { default as Text} from './text';
+export { default as Title } from './title';
 
 export const state = {
   scrim: Scrim.state, 

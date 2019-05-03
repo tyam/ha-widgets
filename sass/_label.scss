@@ -1,0 +1,10 @@
+
+.haw-label {
+    @extend .haw-component;
+    font-size: $x-small * $rem;
+    //height: $x-small * $rem * $line-height-narrow;
+    line-height: $line-height-narrow;
+    color: fore54();
+    background-color: transparent;
+    vertical-align: middle;
+}
