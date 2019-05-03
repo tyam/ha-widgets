@@ -1,0 +1,14 @@
+
+// Echo
+.haw-echo {
+    @extend .haw-component;
+    box-sizing: border-box;
+    min-height: $input-height;
+    line-height: $line-height;
+    border-style: solid;
+    border-width: $border;
+    border-color: transparent;
+    padding: ($padding - $border - (($line-height - 1) * 0.5 * $rem)) ($padding - $border);
+    outline:none;
+    color: fore87();
+}

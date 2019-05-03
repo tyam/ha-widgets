@@ -8,7 +8,13 @@
   var PopupButton = haw.Popup.Trigger(haw.Button);
   var PopupMenuItem = haw.Popup.Trigger(haw.Menu.Item);
   var view11 = function view11(state, actions) {
-    return hyperapp.h(haw.VBox, null, hyperapp.h(haw.HBox, null, hyperapp.h(ScrimButton, {
+    return hyperapp.h(haw.VBox, {
+      g: "2",
+      noedge: true
+    }, hyperapp.h(haw.HBox, {
+      g: "2",
+      noedge: true
+    }, hyperapp.h(ScrimButton, {
       targetId: "modal"
     }, "Modal"), hyperapp.h(ScrimButton, {
       targetId: "spinner",
@@ -21,7 +27,60 @@
       onclick: function onclick() {
         return actions.haw.snackbar.trigger('Hello Snackbar');
       }
-    }, "Snackbar")), hyperapp.h(haw.Scrim, {
+    }, "Snackbar")), hyperapp.h(haw.HBox, {
+      g: "2",
+      noedge: true
+    }, hyperapp.h(haw.TextInput, null), hyperapp.h(haw.TextInput, {
+      invalid: true
+    }), hyperapp.h(haw.TextInput, {
+      disabled: true
+    })), hyperapp.h(haw.HBox, {
+      g: "2",
+      noedge: true
+    }, hyperapp.h(haw.TextArea, null), hyperapp.h(haw.TextArea, {
+      invalid: true
+    }), hyperapp.h(haw.TextArea, {
+      disabled: true
+    })), hyperapp.h(haw.HBox, {
+      g: "2",
+      noedge: true
+    }, hyperapp.h(haw.Echo, null, "Echo")), hyperapp.h(haw.HBox, {
+      g: "2",
+      noedge: true
+    }, hyperapp.h(haw.FileInput, {
+      id: "fi1"
+    }), hyperapp.h(haw.FileInput, {
+      id: "fi2",
+      invalid: true
+    }), hyperapp.h(haw.FileInput, {
+      id: "fi3",
+      disabled: true
+    })), hyperapp.h(haw.HBox, {
+      g: "2",
+      noedge: true
+    }, hyperapp.h(haw.Checkbox, {
+      id: "cb1"
+    }, "Checkbox 1"), hyperapp.h(haw.Checkbox, {
+      id: "cb2",
+      invalid: true
+    }, "Checkbox 2"), hyperapp.h(haw.Checkbox, {
+      id: "cb3",
+      disabled: true
+    }, "Checkbox 3")), hyperapp.h(haw.HBox, {
+      g: "3",
+      noedge: true
+    }, hyperapp.h(haw.Radio, {
+      id: "rb1",
+      name: "rb"
+    }, "Radio 1"), hyperapp.h(haw.Radio, {
+      id: "rb2",
+      name: "rb",
+      invalid: true
+    }, "Radio 2"), hyperapp.h(haw.Radio, {
+      id: "rb3",
+      name: "rb",
+      disabled: true
+    }, "Radio 3")), hyperapp.h(haw.Scrim, {
       id: "modal"
     }, hyperapp.h(haw.Dialog, null, hyperapp.h("div", null, "\u30C6\u30AD\u30B9\u30C8"), hyperapp.h(haw.HBox, {
       align: "end"

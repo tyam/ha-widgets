@@ -1,0 +1,38 @@
+
+.haw-text-input {
+    @extend .haw-component;
+    box-sizing: border-box;
+    height: $input-height;
+    line-height: ($input-height - 2 * $border);
+    border-style: solid;
+    border-width: $border 0;
+    border-color: transparent;
+    border-bottom-color: fore12();
+    padding: 0 $padding;
+    outline:none;
+    font-size: $rem;
+    color: fore87();
+    min-width: 4 * $rem;
+    &::placeholder {
+        color: fore26();
+    }
+    &:-ms-input-placeholder {
+        color: fore26();
+    }
+    background-color: $back90;
+    transition: background-color 0.2s linear, border-color 0.2s linear;
+    &.-invalid {
+        border-bottom-color: fore54(danger);
+    }
+    &[disabled] {
+        opacity: $alpha-disabled;
+        pointer-events: none;
+        cursor: auto;
+    }
+    /*&:hover:not(:focus) {
+        background-color: rgba($color-focus, $alpha-overlay);
+    }*/
+    &:focus {
+        border-bottom-color: fore54(primary);
+    }
+}

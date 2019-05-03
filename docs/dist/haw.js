@@ -852,6 +852,164 @@
       }, others));
     };
 
+    var Checkbox = function Checkbox(_ref, contents) {
+      var _ref$invalid = _ref.invalid,
+          invalid = _ref$invalid === void 0 ? false : _ref$invalid,
+          id = _ref.id,
+          _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          props = _objectWithoutProperties(_ref, ["invalid", "id", "classes"]);
+
+      return hyperapp.h(Component, {
+        tagName: "div",
+        classes: _objectSpread({
+          "haw-checkbox": true,
+          "-invalid": invalid
+        }, classes)
+      }, hyperapp.h("input", _extends({
+        type: "checkbox",
+        id: id
+      }, props)), hyperapp.h("label", {
+        htmlFor: id
+      }, contents));
+    };
+
+    var Echo = function Echo(_ref, contents) {
+      var _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          props = _objectWithoutProperties(_ref, ["classes"]);
+
+      return hyperapp.h(Component, _extends({
+        tagName: "div",
+        classes: _objectSpread({
+          "haw-echo": true
+        }, classes)
+      }, props), contents);
+    };
+
+    var FileInput = function FileInput(_ref, contents) {
+      var id = _ref.id,
+          _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          _ref$placeholder = _ref.placeholder,
+          placeholder = _ref$placeholder === void 0 ? "" : _ref$placeholder,
+          _ref$invalid = _ref.invalid,
+          invalid = _ref$invalid === void 0 ? false : _ref$invalid,
+          _ref$disabled = _ref.disabled,
+          disabled = _ref$disabled === void 0 ? false : _ref$disabled,
+          _ref$onchange = _ref.onchange,
+          onchange = _ref$onchange === void 0 ? null : _ref$onchange,
+          _ref$ondrop = _ref.ondrop,
+          ondrop = _ref$ondrop === void 0 ? null : _ref$ondrop,
+          _ref$name = _ref.name,
+          name = _ref$name === void 0 ? null : _ref$name,
+          others = _objectWithoutProperties(_ref, ["id", "classes", "placeholder", "invalid", "disabled", "onchange", "ondrop", "name"]);
+
+      var placeheld = false;
+
+      if (contents.length == 0) {
+        contents = placeholder;
+        placeheld = true;
+      }
+
+      var ondragover = function ondragover(ev) {
+        ev.target.classList.add('-dangled');
+        ev.preventDefault();
+      };
+
+      var ondragleave = function ondragleave(ev) {
+        ev.target.classList.remove('-dangled');
+      };
+
+      var ondrop2 = function ondrop2(ev) {
+        //console.log('ondrop2', ev, ev.dataTransfer.files.length)
+        ev.target.classList.remove('-dangled');
+        ev.preventDefault();
+        ondrop(ev);
+      };
+
+      return hyperapp.h(Component, _extends({
+        tagName: "div",
+        classes: _objectSpread({
+          "haw-file-input": true,
+          "-placeheld": placeheld,
+          "-invalid": invalid
+        }, classes),
+        id: id
+      }, others), hyperapp.h("input", {
+        type: "file",
+        onchange: onchange,
+        id: "haw-file-input-" + id,
+        disabled: disabled,
+        name: name
+      }), hyperapp.h("label", {
+        htmlFor: "haw-file-input-" + id,
+        onclick: onEmit(null, false, null),
+        ondragover: ondragover,
+        ondragleave: ondragleave,
+        ondrop: ondrop2
+      }, contents), hyperapp.h("span", {
+        className: "caret"
+      }));
+    };
+
+    var Radio = function Radio(_ref, contents) {
+      var _ref$invalid = _ref.invalid,
+          invalid = _ref$invalid === void 0 ? false : _ref$invalid,
+          id = _ref.id,
+          _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          props = _objectWithoutProperties(_ref, ["invalid", "id", "classes"]);
+
+      return hyperapp.h(Component, {
+        tagName: "div",
+        classes: _objectSpread({
+          "haw-radio": true,
+          "-invalid": invalid
+        }, classes)
+      }, hyperapp.h("input", _extends({
+        type: "radio",
+        id: id
+      }, props)), hyperapp.h("label", {
+        htmlFor: id
+      }, contents));
+    };
+
+    var TextArea = function TextArea(_ref) {
+      var _ref$invalid = _ref.invalid,
+          invalid = _ref$invalid === void 0 ? false : _ref$invalid,
+          _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          props = _objectWithoutProperties(_ref, ["invalid", "classes"]);
+
+      return hyperapp.h(Component, _extends({
+        tagName: "textarea",
+        classes: _objectSpread({
+          "haw-text-area": true,
+          "-invalid": invalid
+        }, classes)
+      }, props));
+    };
+
+    var TextInput = function TextInput(_ref) {
+      var _ref$invalid = _ref.invalid,
+          invalid = _ref$invalid === void 0 ? false : _ref$invalid,
+          _ref$type = _ref.type,
+          type = _ref$type === void 0 ? "text" : _ref$type,
+          _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          props = _objectWithoutProperties(_ref, ["invalid", "type", "classes"]);
+
+      return hyperapp.h(Component, _extends({
+        tagName: "input",
+        type: type,
+        classes: _objectSpread({
+          "haw-text-input": true,
+          "-invalid": invalid
+        }, classes)
+      }, props));
+    };
+
     var Button = function Button(_ref, contents) {
       var _ref$coloring = _ref.coloring,
           coloring = _ref$coloring === void 0 ? 'default' : _ref$coloring,
@@ -901,14 +1059,20 @@
     };
 
     exports.Button = Button;
+    exports.Checkbox = Checkbox;
     exports.Component = Component;
     exports.Dialog = Dialog;
+    exports.Echo = Echo;
+    exports.FileInput = FileInput;
     exports.HBox = HBox;
     exports.Menu = Menu;
     exports.Popup = Popup;
+    exports.Radio = Radio;
     exports.Scrim = Scrim;
     exports.Snackbar = Snackbar;
     exports.Spinner = Spinner;
+    exports.TextArea = TextArea;
+    exports.TextInput = TextInput;
     exports.VBox = VBox;
     exports.actions = actions;
     exports.bcs = bcs;
