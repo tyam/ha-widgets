@@ -8,9 +8,10 @@
   var view11 = function view11(state, actions) {
     return hyperapp.h(haw.VBox, null, hyperapp.h(haw.HBox, null, hyperapp.h(ScrimButton, {
       targetId: "modal"
-    }, "Modal"), hyperapp.h(haw.Button, {
+    }, "Modal"), hyperapp.h(ScrimButton, {
+      targetId: "spinner",
       shape: "contained"
-    }, "Button 2"), hyperapp.h(haw.Button, {
+    }, "Spinner"), hyperapp.h(haw.Button, {
       shape: "open"
     }, "Button 3")), hyperapp.h(haw.Scrim, {
       id: "modal"
@@ -19,7 +20,9 @@
     }, hyperapp.h(ScrimButton, {
       shape: "open",
       targetId: "modal"
-    }, "OK")))), haw.viewHaw(state, actions));
+    }, "OK")))), hyperapp.h(haw.Scrim, {
+      id: "spinner"
+    }, hyperapp.h(haw.Spinner, null)), haw.viewHaw(state, actions));
   };
 
   exports.view11 = view11;

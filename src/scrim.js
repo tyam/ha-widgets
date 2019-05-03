@@ -60,7 +60,7 @@ const Scrim = (() => {
 })();
 
 Scrim.Trigger = Component => ({targetId, onclick:original, ...props}, children) => (state, actions) => {
-  console.log('ScrimTrigger', state, actions)
+  //console.log('ScrimTrigger', state, actions)
   const onclick = (x) => {
     if (state.haw.scrim.ids.includes(targetId)) {
       actions.haw.scrim.pop(targetId)

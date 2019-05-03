@@ -366,8 +366,7 @@
             props = _objectWithoutProperties(_ref2, ["targetId", "onclick"]);
 
         return function (state, actions) {
-          console.log('ScrimTrigger', state, actions);
-
+          //console.log('ScrimTrigger', state, actions)
           var onclick = function onclick(x) {
             if (state.haw.scrim.ids.includes(targetId)) {
               actions.haw.scrim.pop(targetId);
@@ -443,6 +442,27 @@
       }, others), children);
     };
 
+    var Spinner = function Spinner(_ref) {
+      var _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          others = _objectWithoutProperties(_ref, ["classes"]);
+
+      return hyperapp.h(Component, _extends({
+        tagName: "div",
+        classes: _objectSpread({
+          "haw-spinner": true
+        }, classes)
+      }, others), hyperapp.h("svg", {
+        xmlns: "http://www.w3.org/2000/svg",
+        width: "64",
+        height: "64",
+        viewBox: "0 0 64 64"
+      }, hyperapp.h("path", {
+        d: "M2 32\r A14 14\r 0 1 1\r 62 32\r ",
+        style: "fill:none; stroke-width: 4"
+      })));
+    };
+
     var Button = function Button(_ref, contents) {
       var _ref$coloring = _ref.coloring,
           coloring = _ref$coloring === void 0 ? 'default' : _ref$coloring,
@@ -492,6 +512,7 @@
     exports.Dialog = Dialog;
     exports.HBox = HBox;
     exports.Scrim = Scrim;
+    exports.Spinner = Spinner;
     exports.VBox = VBox;
     exports.actions = actions;
     exports.bcs = bcs;

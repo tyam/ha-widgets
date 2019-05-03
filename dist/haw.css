@@ -311,6 +311,30 @@
     height: 100%;
     transform: translate(-50%, -50%); }
 
+.haw-spinner {
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  left: calc(50% - 32px);
+  top: calc(50% - 32px);
+  transform: rotate(0);
+  animation: spin-base 1.5s infinite; }
+  .haw-spinner > svg {
+    stroke: #0266fc; }
+
+@keyframes spin-base {
+  0% {
+    transform: rotate(0deg);
+    animation-timing-function: cubic-bezier(0.6, 0, 0.82, 0.49); }
+  49.9% {
+    transform: rotate(180deg); }
+  50% {
+    transform: rotate(180deg);
+    animation-timing-function: cubic-bezier(0.18, 0.51, 0.4, 1); }
+  99.9% {
+    transform: rotate(360deg); } }
+
 .haw-button {
   height: 2.5rem;
   line-height: 2.25rem;
@@ -808,3 +832,27 @@
     width: 100%;
     height: 100%;
     transform: translate(-50%, -50%); }
+
+.haw-spinner {
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  left: calc(50% - 32px);
+  top: calc(50% - 32px);
+  transform: rotate(0);
+  animation: spin-base 1.5s infinite; }
+  .haw-spinner > svg {
+    stroke: #0266fc; }
+
+@keyframes spin-base {
+  0% {
+    transform: rotate(0deg);
+    animation-timing-function: cubic-bezier(0.6, 0, 0.82, 0.49); }
+  49.9% {
+    transform: rotate(180deg); }
+  50% {
+    transform: rotate(180deg);
+    animation-timing-function: cubic-bezier(0.18, 0.51, 0.4, 1); }
+  99.9% {
+    transform: rotate(360deg); } }

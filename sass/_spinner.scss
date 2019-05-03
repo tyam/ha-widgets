@@ -1,0 +1,21 @@
+
+.haw-spinner {
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    left: calc(50% - 32px);
+    top: calc(50% - 32px);
+    transform: rotate(0);
+    animation: spin-base 1.5s infinite;
+    & > svg {
+        stroke: $back99-primary;
+    }
+}
+
+@keyframes spin-base {
+    0% {transform: rotate(0deg); animation-timing-function:cubic-bezier(.6,0,.82,.49);}
+    49.9% {transform: rotate(180deg);}
+    50% {transform: rotate(180deg); animation-timing-function:cubic-bezier(.18,.51,.4,1);}
+    99.9% {transform: rotate(360deg);}
+}

@@ -7,6 +7,7 @@ import '../sass/_hbox.scss';
 import '../sass/_vbox.scss';
 import '../sass/_scrim.scss';
 import '../sass/_dialog.scss';
+import '../sass/_spinner.scss';
 import '../sass/_button.scss';
 
 import './polyfill';
@@ -21,6 +22,7 @@ export { default as VBox } from './vbox';
 
 export { default as Scrim } from './scrim';
 export { default as Dialog } from './dialog';
+export { default as Spinner } from './spinner';
 export { default as Button } from './button';
 
 export const state = {
