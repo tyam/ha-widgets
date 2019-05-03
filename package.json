@@ -27,7 +27,7 @@
     "hyperapp": "^1.2.9"
   },
   "scripts": {
-    "build": "rollup -c", 
+    "build": "rollup -c",
     "watch": "rollup -c -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
