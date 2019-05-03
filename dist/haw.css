@@ -727,6 +727,8 @@
     will-change: transform, opacity; }
   .haw-dropdown.-placeheld {
     color: rgba(0, 0, 0, 0.26); }
+  .haw-dropdown > .caret {
+    pointer-events: none; }
   .haw-dropdown > .caret::before {
     display: inline-block;
     position: absolute;
@@ -736,6 +738,7 @@
     font-size: 1rem;
     height: 2.5rem;
     line-height: 2.5rem;
+    pointer-events: none;
     vertical-align: top;
     font-family: "Material Icons";
     direction: ltr;
@@ -1357,99 +1360,6 @@
   background-color: rgba(0, 0, 0, 0.12);
   background-clip: content-box; }
 
-.haw-button {
-  height: 2.5rem;
-  line-height: 2.25rem;
-  text-align: center;
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 0 1rem;
-  background-color: transparent;
-  background-clip: border-box;
-  border-radius: 0.5rem;
-  border-style: solid;
-  border-width: 0.125rem;
-  border-color: rgba(0, 0, 0, 0.12);
-  color: rgba(0, 0, 0, 0.87);
-  box-sizing: border-box;
-  outline: none;
-  white-space: nowrap;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  transition: background-color 0.2s linear, border-color 0.2s linear; }
-  .haw-button.-emitted::after {
-    display: block;
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 30rem;
-    background-color: rgba(0, 0, 0, 0.12);
-    opacity: 0;
-    transform: scaleX(0);
-    animation: wave 0.4s linear 0s 1 normal forwards running;
-    transform-origin: left top;
-    will-change: transform, opacity; }
-  .haw-button[disabled] {
-    opacity: 0.45;
-    pointer-events: none;
-    cursor: auto; }
-  .haw-button:hover {
-    background-color: #e1edff; }
-  .haw-button.-size-large {
-    font-size: 1.15rem;
-    height: 2.875rem;
-    line-height: 2.5875rem;
-    padding: 0 1.15rem;
-    border-width: 0.14375rem; }
-  .haw-button.-size-small {
-    font-size: 0.85rem;
-    height: 2.125rem;
-    line-height: 1.9125rem;
-    padding: 0 0.85rem;
-    border-width: 0.10625rem; }
-  .haw-button.-size-nano {
-    font-size: 0.75rem;
-    height: 1.875rem;
-    line-height: 1.6875rem;
-    padding: 0 0.75rem;
-    border-width: 0.09375rem; }
-  .haw-button.-coloring-primary {
-    border-color: rgba(2, 102, 252, 0.54);
-    color: rgba(2, 102, 252, 0.87); }
-  .haw-button.-coloring-danger {
-    border-color: rgba(235, 6, 6, 0.54);
-    color: rgba(235, 6, 6, 0.87); }
-    .haw-button.-coloring-danger:hover {
-      background-color: #fde1e1; }
-  .haw-button.-shape-contained {
-    background-color: #e0e0e0;
-    border-color: transparent; }
-    .haw-button.-shape-contained:hover {
-      background-color: #b3b3b3; }
-    .haw-button.-shape-contained.-coloring-primary {
-      background-color: #0266fc;
-      color: rgba(255, 255, 255, 0.87); }
-      .haw-button.-shape-contained.-coloring-primary:hover {
-        background-color: #4e94fd; }
-    .haw-button.-shape-contained.-coloring-danger {
-      background-color: #eb0606;
-      color: rgba(255, 255, 255, 0.87); }
-      .haw-button.-shape-contained.-coloring-danger:hover {
-        background-color: #f15151; }
-  .haw-button.-shape-open {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    border-color: transparent;
-    color: inherit;
-    border-radius: 0; }
-    .haw-button.-shape-open.-coloring-primary {
-      color: rgba(2, 102, 252, 0.87); }
-    .haw-button.-shape-open.-coloring-danger {
-      color: rgba(235, 6, 6, 0.87); }
-
 .haw-snackbar {
   position: fixed;
   right: 0;
@@ -1724,6 +1634,8 @@
     will-change: transform, opacity; }
   .haw-dropdown.-placeheld {
     color: rgba(0, 0, 0, 0.26); }
+  .haw-dropdown > .caret {
+    pointer-events: none; }
   .haw-dropdown > .caret::before {
     display: inline-block;
     position: absolute;
@@ -1733,6 +1645,7 @@
     font-size: 1rem;
     height: 2.5rem;
     line-height: 2.5rem;
+    pointer-events: none;
     vertical-align: top;
     font-family: "Material Icons";
     direction: ltr;
@@ -1754,6 +1667,99 @@
     border-bottom-color: rgba(235, 6, 6, 0.54); }
   .haw-dropdown:focus {
     border-bottom-color: rgba(2, 102, 252, 0.54); }
+
+.haw-button {
+  height: 2.5rem;
+  line-height: 2.25rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0 1rem;
+  background-color: transparent;
+  background-clip: border-box;
+  border-radius: 0.5rem;
+  border-style: solid;
+  border-width: 0.125rem;
+  border-color: rgba(0, 0, 0, 0.12);
+  color: rgba(0, 0, 0, 0.87);
+  box-sizing: border-box;
+  outline: none;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background-color 0.2s linear, border-color 0.2s linear; }
+  .haw-button.-emitted::after {
+    display: block;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 30rem;
+    background-color: rgba(0, 0, 0, 0.12);
+    opacity: 0;
+    transform: scaleX(0);
+    animation: wave 0.4s linear 0s 1 normal forwards running;
+    transform-origin: left top;
+    will-change: transform, opacity; }
+  .haw-button[disabled] {
+    opacity: 0.45;
+    pointer-events: none;
+    cursor: auto; }
+  .haw-button:hover {
+    background-color: #e1edff; }
+  .haw-button.-size-large {
+    font-size: 1.15rem;
+    height: 2.875rem;
+    line-height: 2.5875rem;
+    padding: 0 1.15rem;
+    border-width: 0.14375rem; }
+  .haw-button.-size-small {
+    font-size: 0.85rem;
+    height: 2.125rem;
+    line-height: 1.9125rem;
+    padding: 0 0.85rem;
+    border-width: 0.10625rem; }
+  .haw-button.-size-nano {
+    font-size: 0.75rem;
+    height: 1.875rem;
+    line-height: 1.6875rem;
+    padding: 0 0.75rem;
+    border-width: 0.09375rem; }
+  .haw-button.-coloring-primary {
+    border-color: rgba(2, 102, 252, 0.54);
+    color: rgba(2, 102, 252, 0.87); }
+  .haw-button.-coloring-danger {
+    border-color: rgba(235, 6, 6, 0.54);
+    color: rgba(235, 6, 6, 0.87); }
+    .haw-button.-coloring-danger:hover {
+      background-color: #fde1e1; }
+  .haw-button.-shape-contained {
+    background-color: #e0e0e0;
+    border-color: transparent; }
+    .haw-button.-shape-contained:hover {
+      background-color: #b3b3b3; }
+    .haw-button.-shape-contained.-coloring-primary {
+      background-color: #0266fc;
+      color: rgba(255, 255, 255, 0.87); }
+      .haw-button.-shape-contained.-coloring-primary:hover {
+        background-color: #4e94fd; }
+    .haw-button.-shape-contained.-coloring-danger {
+      background-color: #eb0606;
+      color: rgba(255, 255, 255, 0.87); }
+      .haw-button.-shape-contained.-coloring-danger:hover {
+        background-color: #f15151; }
+  .haw-button.-shape-open {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border-color: transparent;
+    color: inherit;
+    border-radius: 0; }
+    .haw-button.-shape-open.-coloring-primary {
+      color: rgba(2, 102, 252, 0.87); }
+    .haw-button.-shape-open.-coloring-danger {
+      color: rgba(235, 6, 6, 0.87); }
 
 .haw-divider {
   height: 0.0625rem;

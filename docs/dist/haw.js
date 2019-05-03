@@ -1083,6 +1083,89 @@
       }, props), contents);
     };
 
+    var Divider = function Divider(_ref) {
+      var _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          props = _objectWithoutProperties(_ref, ["classes"]);
+
+      return hyperapp.h(Component, _extends({
+        tagName: "hr",
+        classes: _objectSpread({
+          "haw-divider": true
+        }, classes)
+      }, props));
+    };
+
+    var Label = function Label(_ref, contents) {
+      var _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          props = _objectWithoutProperties(_ref, ["classes"]);
+
+      return hyperapp.h(Component, _extends({
+        tagName: "label",
+        classes: _objectSpread({
+          "haw-label": true
+        }, classes)
+      }, props), contents);
+    };
+
+    var Spacer = function Spacer(_ref) {
+      var _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          _ref$growable = _ref.growable,
+          growable = _ref$growable === void 0 ? true : _ref$growable,
+          props = _objectWithoutProperties(_ref, ["classes", "growable"]);
+
+      return hyperapp.h(Component, _extends({
+        tagName: "div",
+        growable: growable,
+        classes: _objectSpread({
+          "haw-spacer": true
+        }, classes)
+      }, props));
+    };
+
+    var Text = function Text(_ref, contents) {
+      var _ref$size = _ref.size,
+          size = _ref$size === void 0 ? 'medium' : _ref$size,
+          _ref$align = _ref.align,
+          align = _ref$align === void 0 ? 'left' : _ref$align,
+          _ref$coloring = _ref.coloring,
+          coloring = _ref$coloring === void 0 ? 'default' : _ref$coloring,
+          _ref$nowrap = _ref.nowrap,
+          nowrap = _ref$nowrap === void 0 ? false : _ref$nowrap,
+          _ref$narrow = _ref.narrow,
+          narrow = _ref$narrow === void 0 ? false : _ref$narrow,
+          _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          props = _objectWithoutProperties(_ref, ["size", "align", "coloring", "nowrap", "narrow", "classes"]);
+
+      return hyperapp.h(Component, _extends({
+        tagName: "div",
+        classes: _objectSpread({
+          "haw-text": true,
+          "-size": size,
+          "-nowrap": nowrap,
+          "-align": align,
+          "-coloring": coloring,
+          "-narrow": narrow
+        }, classes)
+      }, props), contents);
+    };
+
+    var Title = function Title(_ref, contents) {
+      var _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          others = _objectWithoutProperties(_ref, ["classes"]);
+
+      return hyperapp.h(Component, _extends({
+        tagName: "div",
+        classes: _objectSpread({
+          "haw-title": true
+        }, classes)
+      }, others), contents);
+    };
+
     /* To force rollup watch all sass files */
     var state = {
       scrim: Scrim.state,
@@ -1102,18 +1185,23 @@
     exports.Checkbox = Checkbox;
     exports.Component = Component;
     exports.Dialog = Dialog;
+    exports.Divider = Divider;
     exports.Dropdown = dropdown;
     exports.Echo = Echo;
     exports.FileInput = FileInput;
     exports.HBox = HBox;
+    exports.Label = Label;
     exports.Menu = Menu;
     exports.Popup = Popup;
     exports.Radio = Radio;
     exports.Scrim = Scrim;
     exports.Snackbar = Snackbar;
+    exports.Spacer = Spacer;
     exports.Spinner = Spinner;
+    exports.Text = Text;
     exports.TextArea = TextArea;
     exports.TextInput = TextInput;
+    exports.Title = Title;
     exports.VBox = VBox;
     exports.actions = actions;
     exports.bcs = bcs;

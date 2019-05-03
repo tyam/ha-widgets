@@ -28,6 +28,9 @@
     &.-placeheld {
         color: fore26();
     }
+    & > .caret {
+        pointer-events: none;
+    }
     & > .caret::before {
         display: inline-block;
         position: absolute;
@@ -37,6 +40,7 @@
         font-size: $rem;
         height: $input-height;
         line-height: $input-height;
+        pointer-events: none;
         vertical-align: top;
         font-family: "Material Icons";
         direction: ltr;
