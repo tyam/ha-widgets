@@ -40,6 +40,7 @@ body {
     overflow: auto;
     color: #24292e;
     padding-bottom: 1rem;
+    display: block;
 }
 .glonav.opened {
     transform: translateX(20rem);
@@ -58,7 +59,6 @@ body {
     background-color: rgba(0, 0, 0, 0.1);
 }
 .glonav-header {
-    height: 90.6px;
     height: 90.6px;
     box-sizing: border-box;
     display: flex;
