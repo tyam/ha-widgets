@@ -6,17 +6,41 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="{{ page.root }}dist/haw.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css" rel="stylesheet">
+<link href="{{ page.root }}style.css" rel="stylesheet">
 <title>{{ page.title }}</title>
 </head>
 <body>
 <script src="https://unpkg.com/hyperapp@1.2.9/dist/hyperapp.js"></script>
 <script src="{{ page.root }}dist/haw.js"></script>
 <div class="wrapper">
+  <button class="menu-button"><i class="material-icons" onclick="document.getElementById('glonav').classList.add('opened')">menu</i></button>
   <article class="markdown-body">
     <h1>{{ page.title }}</h1>
     {{ content }}
   </article>
-  <nav id="nav"></nav>
+  <nav class="glonav" id="glonav">
+    <button class="glonav-close-button" onclick="document.getElementById('glonav').classList.remove('opened')"><i class="material-icons">close</i></button>
+    <div class="glonav-header">
+      <div class="logo">ha-widgets<br /><small>Documentation</small></div>
+    </div>
+    <ul>
+      <li><a href="index">Overview</a></li>
+      <li><a href="demo">Demo</a></li>
+      <li><a href="usage">Usage</a></li>
+      <li class="group">
+        <span>Components</span>
+        <ul>
+          <li><a href="dialog">Dialog</a></li>
+        </ul>
+      </li>
+      <li class="group">
+        <span>Markups</span>
+        <ul>
+          <li><a href="badge">Badge</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
 </div>
 </body>
 </html>
