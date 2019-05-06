@@ -27,6 +27,6 @@ None.
 | classes | object | `{}` | The object representing html classes. Refer to [bcs](common) for details. |
 | m | integer\|Array\|null | null | Set the component's margin in five steps from 1 to 5. If an integer is given, the margins on all four sides will be the same. If a 4-element array is given, it is interpreted in the order of top, right, bottom and left. |
 
-### 子要素
+### Children
 
 any.
