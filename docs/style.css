@@ -143,5 +143,6 @@ body {
     }
     .markdown-body {
         margin-left: 17rem;
+        max-width: 40rem;
     }
 }
