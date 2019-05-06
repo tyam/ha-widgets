@@ -97,6 +97,9 @@ body {
 .glonav > ul ul > li {
     margin-left: 16px;
 }
+.glonav > ul li.current {
+    color: #5d64b4;
+}
 .glonav .glonav-close-button {
     position: absolute;
     top: 0;

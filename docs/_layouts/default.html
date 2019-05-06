@@ -24,39 +24,39 @@
       <div class="logo">ha-widgets<br /><small>Documentation</small></div>
     </div>
     <ul>
-      <li><a href="./">Overview</a></li>
-      <li><a href="demo">Demo</a></li>
-      <li><a href="usage">Usage</a></li>
-      <li><a href="layout">Layout</a></li>
+      <li id="link-index"><a href="./">Overview</a></li>
+      <li id="link-demo"><a href="demo">Demo</a></li>
+      <li id="link-usage"><a href="usage">Usage</a></li>
+      <li id="link-layout"><a href="layout">Layout</a></li>
       <li class="group">
         <span>Components</span>
         <ul>
-          <li><a href="component">Component</a></li>
-          <li><a href="vbox">VBox</a></li>
-          <li><a href="hbox">HBox</a></li>
-          <li><a href="button">Button</a></li>
-          <li><a href="checkbox">Checkbox</a></li>
-          <li><a href="dialog">Dialog</a></li>
-          <li><a href="divider">Divider</a></li>
-          <li><a href="dropdown">Dropdown</a></li>
-          <li><a href="echo">Echo</a></li>
-          <li><a href="fileinput">FileInput</a></li>
-          <li><a href="label">Label</a></li>
-          <li><a href="menu">Menu</a></li>
-          <li><a href="menu.item">Menu.Item</a></li>
-          <li><a href="menu.divider">Menu.Divider</a></li>
-          <li><a href="popup">Popup</a></li>
-          <li><a href="popup.trigger">Popup.Trigger</a></li>
-          <li><a href="radio">Radio</a></li>
-          <li><a href="scrim">Scrim</a></li>
-          <li><a href="scrim.trigger">Scrim.Trigger</a></li>
-          <li><a href="snackbar">Snackbar</a></li>
-          <li><a href="spacer">Spacer</a></li>
-          <li><a href="spinner">Spinner</a></li>
-          <li><a href="text">Text</a></li>
-          <li><a href="textarea">TextArea</a></li>
-          <li><a href="textinput">TextInput</a></li>
-          <li><a href="title">Title</a></li>
+          <li id="link-component"><a href="component">Component</a></li>
+          <li id="link-vbox"><a href="vbox">VBox</a></li>
+          <li id="link-hbox"><a href="hbox">HBox</a></li>
+          <li id="link-button"><a href="button">Button</a></li>
+          <li id="link-checkbox"><a href="checkbox">Checkbox</a></li>
+          <li id="link-dialog"><a href="dialog">Dialog</a></li>
+          <li id="link-divider"><a href="divider">Divider</a></li>
+          <li id="link-dropdown"><a href="dropdown">Dropdown</a></li>
+          <li id="link-echo"><a href="echo">Echo</a></li>
+          <li id="link-fileinput"><a href="fileinput">FileInput</a></li>
+          <li id="link-label"><a href="label">Label</a></li>
+          <li id="link-menu"><a href="menu">Menu</a></li>
+          <li id="link-menu.item"><a href="menu.item">Menu.Item</a></li>
+          <li id="link-menu.divider"><a href="menu.divider">Menu.Divider</a></li>
+          <li id="link-popup"><a href="popup">Popup</a></li>
+          <li id="link-popup.trigger"><a href="popup.trigger">Popup.Trigger</a></li>
+          <li id="link-radio"><a href="radio">Radio</a></li>
+          <li id="link-scrim"><a href="scrim">Scrim</a></li>
+          <li id="link-scrim.trigger"><a href="scrim.trigger">Scrim.Trigger</a></li>
+          <li id="link-snackbar"><a href="snackbar">Snackbar</a></li>
+          <li id="link-spacer"><a href="spacer">Spacer</a></li>
+          <li id="link-spinner"><a href="spinner">Spinner</a></li>
+          <li id="link-text"><a href="text">Text</a></li>
+          <li id="link-textarea"><a href="textarea">TextArea</a></li>
+          <li id="link-textinput"><a href="textinput">TextInput</a></li>
+          <li id="link-title"><a href="title">Title</a></li>
         </ul>
       </li>
       <!-- li class="group">
@@ -74,5 +74,15 @@
     </ul>
   </nav>
 </div>
+<script>
+window.onload = function () {
+  var name = window.location.href.split('/').pop();
+  var el = document.getElementById('link-'+name);
+  if (! el) {
+    el = document.getElementById('link-index');
+  }
+  el.classList.add('current');
+}
+</script>
 </body>
 </html>
