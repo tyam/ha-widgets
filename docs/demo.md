@@ -1,6 +1,7 @@
 ---
 title: Demo
 layout: default
+root: ./
 ---
 
 <script src="dist/index.js"></script>
