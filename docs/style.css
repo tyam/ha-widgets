@@ -39,8 +39,13 @@ body {
     z-index: 101;
     overflow: auto;
     color: #24292e;
-    padding-bottom: 1rem;
     display: block;
+}
+.glonav::after {
+    display: block;
+    width: 1px;
+    height: 1em;
+    content: '';
 }
 .glonav.opened {
     transform: translateX(20rem);
