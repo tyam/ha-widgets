@@ -24,7 +24,7 @@ root: ../
 一方、下記は適切に表示されます。
 
 ```jsx
-<VBox style={{height:"100%"}}>
+<VBox style={{"height":"100%"}}>
   <Text growable>...</Text>
   <Button>Button 1</Button>
 </VBox>
