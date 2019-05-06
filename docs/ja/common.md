@@ -16,7 +16,7 @@ DOMのclass属性をうまく扱うための関数で、javascriptオブジェ�
 - `classes.x`がbooleanの場合、その値が真であれば`x`をクラスに追加します
 - `classes.x`が整数か文字列の場合、`x + '-' + classes.x`をクラスに追加します
 
-```js
+```javascript
 bcs({"haw-button":true, "-coloring":"primary", "-m":3, "-invalid":false})
 // --> "haw-button -coloring-primary -m-3"
 ```
