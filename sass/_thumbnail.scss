@@ -1,0 +1,63 @@
+
+
+.haw-thumbnail {
+    @extend .haw-component;
+    background-repeat: no-repeat;
+    background-position: center center;
+    overflow: hidden;
+    &.-size-2 {
+        width: 2 * $rem;
+        height: 2 * $rem;
+    }
+    &.-size-3 {
+        width: 3 * $rem;
+        height: 3 * $rem;
+    }
+    &.-size-4 {
+        width: 4 * $rem;
+        height: 4 * $rem;
+    }
+    &.-size-6 {
+        width: 6 * $rem;
+        height: 6 * $rem;
+    }
+    &.-size-8 {
+        width: 8 * $rem;
+        height: 8 * $rem;
+    }
+    &.-size-12 {
+        width: 12 * $rem;
+        height: 12 * $rem;
+    }
+    &.-scaling-center {
+        background-image: none !important;
+        position: relative;
+        & > img {
+            display: block;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+        }
+    }
+    &.-scaling-cover {
+        background-size: cover;
+        & > img {
+            display: block;
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+    &.-scaling-contain {
+        background-size: contain;
+        & > img {
+            display: block;
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+}

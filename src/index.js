@@ -23,6 +23,8 @@ import '../sass/_label.scss';
 import '../sass/_spacer.scss';
 import '../sass/_text.scss';
 import '../sass/_title.scss';
+import '../sass/_image.scss';
+import '../sass/_thumbnail.scss';
 
 import './polyfill';
 
@@ -55,6 +57,8 @@ export { default as Label } from './label';
 export { default as Spacer } from './spacer';
 export { default as Text} from './text';
 export { default as Title } from './title';
+export { default as Image } from './image';
+export { default as Thumbnail } from './thumbnail';
 
 export const state = {
   scrim: Scrim.state, 

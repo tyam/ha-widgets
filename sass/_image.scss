@@ -1,0 +1,8 @@
+
+.haw-image {
+    @extend .haw-component;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
