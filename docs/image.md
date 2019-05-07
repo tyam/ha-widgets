@@ -1,7 +1,7 @@
 ---
 title: Image
 layout: default
-root: ../
+root: ./
 ---
 
 Image. Displays an image as large as possible while maintaining the aspect ratio.

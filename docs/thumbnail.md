@@ -1,7 +1,7 @@
 ---
 title: Thumbnail
 layout: default
-root: ../
+root: ./
 ---
 
 Displays image thumbnail.
