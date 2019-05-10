@@ -1,10 +1,10 @@
 
-.haw-menu {
+.haw .haw-menu {
     @extend .haw-vbox;
     padding: $spacing 0;
 }
 
-.haw-menu-item {
+.haw .haw-menu-item {
     @extend .haw-component;
     height: $input-height;
     overflow: hidden;
@@ -80,7 +80,7 @@
     }
 }
 
-.haw-menu-divider {
+.haw .haw-menu-divider {
     display: block;
     box-sizing: border-box;
     height: $rule + 2 * $spacing;

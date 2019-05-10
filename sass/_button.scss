@@ -1,6 +1,6 @@
 
 
-.haw-button {
+.haw .haw-button {
     @extend .haw-component;
     height: $input-height;
     line-height: ($input-height - 2 * $border);

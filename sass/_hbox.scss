@@ -6,7 +6,7 @@
     &:not(.-noedge) > * { margin-top: $n; margin-bottom: $n; }
 }
 
-.haw-hbox {
+.haw .haw-hbox {
     @extend .haw-layout;
     flex-direction: row;
     &.-scrollable {

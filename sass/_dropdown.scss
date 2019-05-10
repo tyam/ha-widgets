@@ -1,6 +1,6 @@
 
 
-.haw-dropdown {
+.haw .haw-dropdown {
     @extend .haw-component;
     height: $input-height;
     line-height: ($input-height - 2 * $border);
