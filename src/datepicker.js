@@ -69,21 +69,21 @@ const DatePickerPanel = (
         </HBox>
         <Divider />
         <HBox growable>
-          <VBox growable scrollable>
+          <VBox growable scrollable style={{height: "100%"}}>
             <Menu>
               {years.map(y => (
                 <Menu.Item type="radio" id={"year-"+y} key={y} value={y} name="year" checked={state.year == y} onchange={() => actions.setYear(y)}>{y}</Menu.Item>
               ))}
             </Menu>
           </VBox>
-          <VBox growable scrollable>
+          <VBox growable scrollable style={{height: "100%"}}>
             <Menu>
               {monthes.map(m => (
                 <Menu.Item type="radio" id={"month-"+m} key={m} value={m} name="month" checked={state.month == m} onchange={() => actions.setMonth(m)} disabled={state.year == null}>{m + 1}</Menu.Item>
               ))}
             </Menu>
           </VBox>
-          <VBox growable scrollable>
+          <VBox growable scrollable style={{height: "100%"}}>
             <Menu>
               {dates.map(({val:d,more}) => (
                 <Menu.Item type="radio" id={"date-"+d} key={d} value={d} name="date" checked={state.date == d} onchange={() => actions.setDate(d)} disabled={state.year == null || state.month == null}>{d} {more}</Menu.Item>

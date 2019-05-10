@@ -997,7 +997,10 @@
         growable: true
       }, hyperapp.h(VBox, {
         growable: true,
-        scrollable: true
+        scrollable: true,
+        style: {
+          height: "100%"
+        }
       }, hyperapp.h(Menu, null, years.map(function (y) {
         return hyperapp.h(Menu.Item, {
           type: "radio",
@@ -1012,7 +1015,10 @@
         }, y);
       }))), hyperapp.h(VBox, {
         growable: true,
-        scrollable: true
+        scrollable: true,
+        style: {
+          height: "100%"
+        }
       }, hyperapp.h(Menu, null, monthes.map(function (m) {
         return hyperapp.h(Menu.Item, {
           type: "radio",
@@ -1028,7 +1034,10 @@
         }, m + 1);
       }))), hyperapp.h(VBox, {
         growable: true,
-        scrollable: true
+        scrollable: true,
+        style: {
+          height: "100%"
+        }
       }, hyperapp.h(Menu, null, dates.map(function (_ref2) {
         var d = _ref2.val,
             more = _ref2.more;
