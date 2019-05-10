@@ -25,12 +25,14 @@ import '../sass/_text.scss';
 import '../sass/_title.scss';
 import '../sass/_image.scss';
 import '../sass/_thumbnail.scss';
+import '../sass/_datepicker.scss';
 
 import './polyfill';
 
 import Scrim from './scrim';
 import Popup from './popup';
 import Snackbar from './snackbar';
+import DatePicker from './datepicker';
 
 export {bcs, onCreate, onRemove, doNothing, onEmit, parent, windowOffsetX, windowOffsetY} from './common';
 export { default as Component } from './component';
@@ -59,13 +61,16 @@ export { default as Text} from './text';
 export { default as Title } from './title';
 export { default as Image } from './image';
 export { default as Thumbnail } from './thumbnail';
+export { default as DatePicker } from './datepicker';
 
 export const state = {
+  datepicker: DatePicker.state, 
   scrim: Scrim.state, 
   popup: Popup.state, 
   snackbar: Snackbar.state
 };
 export const actions = {
+  datepicker: DatePicker.actions, 
   scrim: Scrim.actions, 
   popup: Popup.actions, 
   snackbar: Snackbar.actions 

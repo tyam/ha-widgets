@@ -353,13 +353,14 @@
       };
 
       Scrim.view = function (state, actions) {
-        //console.log('Scrim.view', state)
-        var rv = state.ids.map(function (id, i) {
-          var vdom = views[id](101 + i, actions);
-          return vdom;
-        });
-        views = {};
-        return rv;
+        return function (_state, _actions) {
+          var rv = state.ids.map(function (id, i) {
+            var vdom = views[id](101 + i, actions);
+            return vdom;
+          });
+          views = {};
+          return hyperapp.h("div", null, rv);
+        };
       };
 
       return Scrim;
@@ -565,24 +566,26 @@
       };
 
       Popup.view = function (state, actions) {
-        if (!initialized) {
-          document.body.addEventListener('click', actions.autoclose); // 他箇所のクリックを検知するために。
+        return function (_state, _actions) {
+          if (!initialized) {
+            document.body.addEventListener('click', actions.autoclose); // 他箇所のクリックを検知するために。
 
-          if (/iphone|ipod|ipad/.test(navigator.userAgent.toLowerCase())) {
-            document.body.style.cursor = 'pointer';
+            if (/iphone|ipod|ipad/.test(navigator.userAgent.toLowerCase())) {
+              document.body.style.cursor = 'pointer';
+            }
+
+            initialized = true;
           }
 
-          initialized = true;
-        }
+          var vdom = null;
 
-        var vdom = null;
+          if (state.id) {
+            vdom = views[state.id](state.style, state.base, actions);
+          }
 
-        if (state.id) {
-          vdom = views[state.id](state.style, state.base, actions);
-        }
-
-        views = {};
-        return vdom;
+          views = {};
+          return vdom;
+        };
       };
 
       return Popup;
@@ -771,25 +774,53 @@
       }, others), children);
     };
 
-    var Spinner = function Spinner(_ref) {
+    var Button = function Button(_ref, contents) {
+      var _ref$coloring = _ref.coloring,
+          coloring = _ref$coloring === void 0 ? 'default' : _ref$coloring,
+          _ref$size = _ref.size,
+          size = _ref$size === void 0 ? 'default' : _ref$size,
+          _ref$shape = _ref.shape,
+          shape = _ref$shape === void 0 ? 'default' : _ref$shape,
+          _ref$disabled = _ref.disabled,
+          disabled = _ref$disabled === void 0 ? false : _ref$disabled,
+          _ref$type = _ref.type,
+          type = _ref$type === void 0 ? 'button' : _ref$type,
+          _ref$doDelay = _ref.doDelay,
+          doDelay = _ref$doDelay === void 0 ? false : _ref$doDelay,
+          _ref$onclick = _ref.onclick,
+          onclick = _ref$onclick === void 0 ? null : _ref$onclick,
+          _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          props = _objectWithoutProperties(_ref, ["coloring", "size", "shape", "disabled", "type", "doDelay", "onclick", "classes"]);
+
+      return hyperapp.h(Component, _extends({
+        tagName: "button",
+        type: type,
+        classes: _objectSpread({
+          "haw-button": true,
+          "-coloring": coloring,
+          "-shape": shape,
+          "-size": size
+        }, classes),
+        disabled: disabled,
+        onclick: onEmit(onclick, doDelay, null)
+      }, props), contents);
+    };
+
+    var Spacer = function Spacer(_ref) {
       var _ref$classes = _ref.classes,
           classes = _ref$classes === void 0 ? {} : _ref$classes,
-          others = _objectWithoutProperties(_ref, ["classes"]);
+          _ref$growable = _ref.growable,
+          growable = _ref$growable === void 0 ? true : _ref$growable,
+          props = _objectWithoutProperties(_ref, ["classes", "growable"]);
 
       return hyperapp.h(Component, _extends({
         tagName: "div",
+        growable: growable,
         classes: _objectSpread({
-          "haw-spinner": true
+          "haw-spacer": true
         }, classes)
-      }, others), hyperapp.h("svg", {
-        xmlns: "http://www.w3.org/2000/svg",
-        width: "64",
-        height: "64",
-        viewBox: "0 0 64 64"
-      }, hyperapp.h("path", {
-        d: "M2 32\r A14 14\r 0 1 1\r 62 32\r ",
-        style: "fill:none; stroke-width: 4"
-      })));
+      }, props));
     };
 
     var Menu = function Menu(_ref, children) {
@@ -850,6 +881,335 @@
           "haw-menu-divider": true
         }, classes)
       }, others));
+    };
+
+    var Title = function Title(_ref, contents) {
+      var _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          others = _objectWithoutProperties(_ref, ["classes"]);
+
+      return hyperapp.h(Component, _extends({
+        tagName: "div",
+        classes: _objectSpread({
+          "haw-title": true
+        }, classes)
+      }, others), contents);
+    };
+
+    var Divider = function Divider(_ref) {
+      var _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          props = _objectWithoutProperties(_ref, ["classes"]);
+
+      return hyperapp.h(Component, _extends({
+        tagName: "hr",
+        classes: _objectSpread({
+          "haw-divider": true
+        }, classes)
+      }, props));
+    };
+
+    var ScrimButton = Scrim.Trigger(Button);
+
+    var DatePickerPanel = function DatePickerPanel(_ref) {
+      var state = _ref.state,
+          actions = _ref.actions,
+          _ref$catalog = _ref.catalog,
+          catalog = _ref$catalog === void 0 ? {} : _ref$catalog,
+          _ref$minYear = _ref.minYear,
+          minYear = _ref$minYear === void 0 ? 1900 : _ref$minYear,
+          _ref$maxYear = _ref.maxYear,
+          maxYear = _ref$maxYear === void 0 ? 2099 : _ref$maxYear,
+          _ref$onpick = _ref.onpick,
+          onpick = _ref$onpick === void 0 ? null : _ref$onpick;
+      var defaultCatalog = {
+        ok: 'OK',
+        cancel: 'Cancel',
+        clear: 'Clear',
+        year: 'Year',
+        month: 'Month',
+        date: 'Date',
+        week: [hyperapp.h("span", {
+          "class": "haw--size-small",
+          style: {
+            color: "#BB2222"
+          }
+        }, "Sun"), hyperapp.h("span", {
+          "class": "haw--size-small"
+        }, "Mon"), hyperapp.h("span", {
+          "class": "haw--size-small"
+        }, "Tue"), hyperapp.h("span", {
+          "class": "haw--size-small"
+        }, "Wed"), hyperapp.h("span", {
+          "class": "haw--size-small"
+        }, "Thu"), hyperapp.h("span", {
+          "class": "haw--size-small"
+        }, "Fri"), hyperapp.h("span", {
+          "class": "haw--size-small",
+          style: {
+            color: "#2222BB"
+          }
+        }, "Sat")]
+      };
+      catalog = _objectSpread({}, defaultCatalog, catalog);
+      var years = [];
+
+      for (var y = minYear; y <= maxYear; y++) {
+        years.push(y);
+      }
+
+      var monthes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+      var dates = [];
+      var lastDate = state.year != null && state.month != null ? getLastDate(state.year, state.month) : 31;
+      var baseDay = state.year != null && state.month != null ? new Date(state.year, state.month, 1).getDay() : -1;
+
+      for (var d = 1; d <= lastDate; d++) {
+        dates.push({
+          val: d,
+          more: baseDay != -1 ? catalog.week[(baseDay + d - 1) % 7] : null
+        });
+      }
+
+      return hyperapp.h(Scrim, {
+        id: "date-picker",
+        key: "date-picker"
+      }, hyperapp.h(Dialog, {
+        size: "default",
+        style: {
+          height: "30rem"
+        }
+      }, hyperapp.h(HBox, null, hyperapp.h(Title, {
+        growable: true,
+        style: {
+          "text-align": "center"
+        }
+      }, catalog.year), hyperapp.h(Title, {
+        growable: true,
+        style: {
+          "text-align": "center"
+        }
+      }, catalog.month), hyperapp.h(Title, {
+        growable: true,
+        style: {
+          "text-align": "center"
+        }
+      }, catalog.date)), hyperapp.h(Divider, null), hyperapp.h(HBox, {
+        growable: true
+      }, hyperapp.h(VBox, {
+        growable: true,
+        scrollable: true
+      }, hyperapp.h(Menu, null, years.map(function (y) {
+        return hyperapp.h(Menu.Item, {
+          type: "radio",
+          id: "year-" + y,
+          key: y,
+          value: y,
+          name: "year",
+          checked: state.year == y,
+          onchange: function onchange() {
+            return actions.setYear(y);
+          }
+        }, y);
+      }))), hyperapp.h(VBox, {
+        growable: true,
+        scrollable: true
+      }, hyperapp.h(Menu, null, monthes.map(function (m) {
+        return hyperapp.h(Menu.Item, {
+          type: "radio",
+          id: "month-" + m,
+          key: m,
+          value: m,
+          name: "month",
+          checked: state.month == m,
+          onchange: function onchange() {
+            return actions.setMonth(m);
+          },
+          disabled: state.year == null
+        }, m + 1);
+      }))), hyperapp.h(VBox, {
+        growable: true,
+        scrollable: true
+      }, hyperapp.h(Menu, null, dates.map(function (_ref2) {
+        var d = _ref2.val,
+            more = _ref2.more;
+        return hyperapp.h(Menu.Item, {
+          type: "radio",
+          id: "date-" + d,
+          key: d,
+          value: d,
+          name: "date",
+          checked: state.date == d,
+          onchange: function onchange() {
+            return actions.setDate(d);
+          },
+          disabled: state.year == null || state.month == null
+        }, d, " ", more);
+      })))), hyperapp.h(Divider, null), hyperapp.h(HBox, null, hyperapp.h(ScrimButton, {
+        shape: "open",
+        targetId: "date-picker",
+        doDelay: true,
+        onclick: function onclick() {
+          return onpick({
+            year: null,
+            month: null,
+            date: null
+          });
+        }
+      }, catalog.clear), hyperapp.h(Spacer, {
+        growable: true
+      }), hyperapp.h(ScrimButton, {
+        shape: "open",
+        targetId: "date-picker",
+        doDelay: true
+      }, catalog.cancel), hyperapp.h(ScrimButton, {
+        shape: "open",
+        targetId: "date-picker",
+        doDelay: true,
+        onclick: function onclick() {
+          return onpick(state);
+        },
+        coloring: "primary"
+      }, catalog.ok))));
+    };
+
+    var getLastDate = function getLastDate(year, month) {
+      var d = new Date(year, month + 1, 0);
+      return d.getDate();
+    };
+
+    var pad2 = function pad2(n) {
+      if (n < 10) return '0' + n;else return '' + n;
+    };
+
+    var formatDate = function formatDate(val) {
+      if (!val) return '';
+      var d = new Date(val);
+      return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getMonth());
+    };
+
+    var DatePicker = function DatePicker(_ref3) {
+      var _ref3$classes = _ref3.classes,
+          classes = _ref3$classes === void 0 ? {} : _ref3$classes,
+          _ref3$placeholder = _ref3.placeholder,
+          placeholder = _ref3$placeholder === void 0 ? "" : _ref3$placeholder,
+          _ref3$invalid = _ref3.invalid,
+          invalid = _ref3$invalid === void 0 ? false : _ref3$invalid,
+          _ref3$disabled = _ref3.disabled,
+          disabled = _ref3$disabled === void 0 ? false : _ref3$disabled,
+          _ref3$onpick = _ref3.onpick,
+          onpick = _ref3$onpick === void 0 ? null : _ref3$onpick,
+          _ref3$value = _ref3.value,
+          value = _ref3$value === void 0 ? null : _ref3$value,
+          _ref3$show = _ref3.show,
+          show = _ref3$show === void 0 ? null : _ref3$show,
+          others = _objectWithoutProperties(_ref3, ["classes", "placeholder", "invalid", "disabled", "onpick", "value", "show"]);
+
+      return function (state, actions) {
+        if (show === null) {
+          show = formatDate;
+        }
+
+        var contents = show(value);
+        var placeheld = false;
+
+        if (contents.length == 0) {
+          contents = placeholder;
+          placeheld = true;
+        }
+
+        var onclick = function onclick() {
+          actions.haw.datepicker.prepare(value);
+          window.requestAnimationFrame(function () {
+            return actions.haw.scrim.push('date-picker');
+          });
+        };
+
+        if (!onpick) {
+          onpick = doNothing;
+        }
+
+        return hyperapp.h(Component, _extends({
+          tagName: "button",
+          classes: _objectSpread({
+            "haw-date-picker": true,
+            "-placeheld": placeheld,
+            "-invalid": invalid
+          }, classes),
+          disabled: disabled,
+          onclick: onEmit(onclick, true, null)
+        }, others), contents, hyperapp.h("span", {
+          className: "caret"
+        }), hyperapp.h(DatePickerPanel, {
+          onpick: onpick,
+          state: state.haw.datepicker,
+          actions: actions.haw.datepicker
+        }));
+      };
+    };
+
+    DatePicker.state = {
+      year: null,
+      month: null,
+      date: null
+    };
+    DatePicker.actions = {
+      prepare: function prepare(value) {
+        return function (_state, _actions) {
+          if (value === null) return {
+            year: null,
+            month: null,
+            date: null
+          };
+          var date = new Date(value);
+          return {
+            year: date.getFullYear(),
+            month: date.getMonth(),
+            date: date.getDate()
+          };
+        };
+      },
+      setYear: function setYear(y) {
+        return function (state, _actions) {
+          return _objectSpread({}, state, {
+            year: y
+          });
+        };
+      },
+      setMonth: function setMonth(m) {
+        return function (state, _actions) {
+          return _objectSpread({}, state, {
+            month: m
+          });
+        };
+      },
+      setDate: function setDate(d) {
+        return function (state, _actions) {
+          return _objectSpread({}, state, {
+            date: d
+          });
+        };
+      }
+    };
+
+    var Spinner = function Spinner(_ref) {
+      var _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          others = _objectWithoutProperties(_ref, ["classes"]);
+
+      return hyperapp.h(Component, _extends({
+        tagName: "div",
+        classes: _objectSpread({
+          "haw-spinner": true
+        }, classes)
+      }, others), hyperapp.h("svg", {
+        xmlns: "http://www.w3.org/2000/svg",
+        width: "64",
+        height: "64",
+        viewBox: "0 0 64 64"
+      }, hyperapp.h("path", {
+        d: "M2 32\r A14 14\r 0 1 1\r 62 32\r ",
+        style: "fill:none; stroke-width: 4"
+      })));
     };
 
     var Checkbox = function Checkbox(_ref, contents) {
@@ -1050,52 +1410,6 @@
 
     var dropdown = Popup.Trigger(Dropdown);
 
-    var Button = function Button(_ref, contents) {
-      var _ref$coloring = _ref.coloring,
-          coloring = _ref$coloring === void 0 ? 'default' : _ref$coloring,
-          _ref$size = _ref.size,
-          size = _ref$size === void 0 ? 'default' : _ref$size,
-          _ref$shape = _ref.shape,
-          shape = _ref$shape === void 0 ? 'default' : _ref$shape,
-          _ref$disabled = _ref.disabled,
-          disabled = _ref$disabled === void 0 ? false : _ref$disabled,
-          _ref$type = _ref.type,
-          type = _ref$type === void 0 ? 'button' : _ref$type,
-          _ref$doDelay = _ref.doDelay,
-          doDelay = _ref$doDelay === void 0 ? false : _ref$doDelay,
-          _ref$onclick = _ref.onclick,
-          onclick = _ref$onclick === void 0 ? null : _ref$onclick,
-          _ref$classes = _ref.classes,
-          classes = _ref$classes === void 0 ? {} : _ref$classes,
-          props = _objectWithoutProperties(_ref, ["coloring", "size", "shape", "disabled", "type", "doDelay", "onclick", "classes"]);
-
-      return hyperapp.h(Component, _extends({
-        tagName: "button",
-        type: type,
-        classes: _objectSpread({
-          "haw-button": true,
-          "-coloring": coloring,
-          "-shape": shape,
-          "-size": size
-        }, classes),
-        disabled: disabled,
-        onclick: onEmit(onclick, doDelay, null)
-      }, props), contents);
-    };
-
-    var Divider = function Divider(_ref) {
-      var _ref$classes = _ref.classes,
-          classes = _ref$classes === void 0 ? {} : _ref$classes,
-          props = _objectWithoutProperties(_ref, ["classes"]);
-
-      return hyperapp.h(Component, _extends({
-        tagName: "hr",
-        classes: _objectSpread({
-          "haw-divider": true
-        }, classes)
-      }, props));
-    };
-
     var Label = function Label(_ref, contents) {
       var _ref$classes = _ref.classes,
           classes = _ref$classes === void 0 ? {} : _ref$classes,
@@ -1107,22 +1421,6 @@
           "haw-label": true
         }, classes)
       }, props), contents);
-    };
-
-    var Spacer = function Spacer(_ref) {
-      var _ref$classes = _ref.classes,
-          classes = _ref$classes === void 0 ? {} : _ref$classes,
-          _ref$growable = _ref.growable,
-          growable = _ref$growable === void 0 ? true : _ref$growable,
-          props = _objectWithoutProperties(_ref, ["classes", "growable"]);
-
-      return hyperapp.h(Component, _extends({
-        tagName: "div",
-        growable: growable,
-        classes: _objectSpread({
-          "haw-spacer": true
-        }, classes)
-      }, props));
     };
 
     var Text = function Text(_ref, contents) {
@@ -1153,26 +1451,56 @@
       }, props), contents);
     };
 
-    var Title = function Title(_ref, contents) {
-      var _ref$classes = _ref.classes,
+    var Image = function Image(_ref) {
+      var src = _ref.src,
+          _ref$classes = _ref.classes,
           classes = _ref$classes === void 0 ? {} : _ref$classes,
-          others = _objectWithoutProperties(_ref, ["classes"]);
+          others = _objectWithoutProperties(_ref, ["src", "classes"]);
 
+      return hyperapp.h(Component, _extends({
+        tagName: "img",
+        src: src,
+        classes: _objectSpread({
+          "haw-image": true
+        }, classes)
+      }, others));
+    };
+
+    var Thumbnail = function Thumbnail(_ref) {
+      var src = _ref.src,
+          _ref$scaling = _ref.scaling,
+          scaling = _ref$scaling === void 0 ? 'center' : _ref$scaling,
+          _ref$size = _ref.size,
+          size = _ref$size === void 0 ? 2 : _ref$size,
+          _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          _ref$style = _ref.style,
+          style = _ref$style === void 0 ? {} : _ref$style,
+          others = _objectWithoutProperties(_ref, ["src", "scaling", "size", "classes", "style"]);
+
+      style.backgroundImage = "url(" + src + ")";
       return hyperapp.h(Component, _extends({
         tagName: "div",
         classes: _objectSpread({
-          "haw-title": true
-        }, classes)
-      }, others), contents);
+          "haw-thumbnail": true,
+          "-scaling": scaling,
+          "-size": size
+        }, classes),
+        style: style
+      }, others), hyperapp.h("img", {
+        src: src
+      }));
     };
 
     /* To force rollup watch all sass files */
     var state = {
+      datepicker: DatePicker.state,
       scrim: Scrim.state,
       popup: Popup.state,
       snackbar: Snackbar.state
     };
     var actions = {
+      datepicker: DatePicker.actions,
       scrim: Scrim.actions,
       popup: Popup.actions,
       snackbar: Snackbar.actions
@@ -1184,12 +1512,14 @@
     exports.Button = Button;
     exports.Checkbox = Checkbox;
     exports.Component = Component;
+    exports.DatePicker = DatePicker;
     exports.Dialog = Dialog;
     exports.Divider = Divider;
     exports.Dropdown = dropdown;
     exports.Echo = Echo;
     exports.FileInput = FileInput;
     exports.HBox = HBox;
+    exports.Image = Image;
     exports.Label = Label;
     exports.Menu = Menu;
     exports.Popup = Popup;
@@ -1201,6 +1531,7 @@
     exports.Text = Text;
     exports.TextArea = TextArea;
     exports.TextInput = TextInput;
+    exports.Thumbnail = Thumbnail;
     exports.Title = Title;
     exports.VBox = VBox;
     exports.actions = actions;

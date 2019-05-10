@@ -1,12 +1,12 @@
 import { h } from 'hyperapp';
-import { Button, HBox, VBox, Scrim, Dialog, Spinner, Popup, Menu, TextInput, TextArea, Echo, Checkbox, Radio, FileInput, Dropdown, viewHaw } from 'haw';
+import { Button, HBox, VBox, Scrim, Dialog, Spinner, Popup, Menu, TextInput, TextArea, Echo, Checkbox, Radio, FileInput, Dropdown, DatePicker, viewHaw } from 'haw';
 
 const ScrimButton = Scrim.Trigger(Button);
 const PopupButton = Popup.Trigger(Button);
 const PopupMenuItem = Popup.Trigger(Menu.Item);
 
 export const view11 = (state, actions) => {
-  return (
+  return ( 
     <VBox g="2" noedge> 
       <HBox g="2" noedge>
         <ScrimButton targetId="modal">Modal</ScrimButton>
@@ -42,10 +42,13 @@ export const view11 = (state, actions) => {
         <Checkbox id="cb2" invalid>Checkbox 2</Checkbox>
         <Checkbox id="cb3" disabled>Checkbox 3</Checkbox>
       </HBox>
-      <HBox g="3" noedge>
+      <HBox g="2" noedge> 
         <Radio id="rb1" name="rb">Radio 1</Radio>
-        <Radio id="rb2" name="rb" invalid>Radio 2</Radio>
+        <Radio id="rb2" name="rb" invalid>Radio 2</Radio> 
         <Radio id="rb3" name="rb" disabled>Radio 3</Radio>
+      </HBox>
+      <HBox g="2" noedge>
+        <DatePicker placeholder="選べ" state={state} actions={actions}></DatePicker>
       </HBox>
       <Scrim id="modal">
         <Dialog>
@@ -59,7 +62,7 @@ export const view11 = (state, actions) => {
         <Spinner />
       </Scrim>
       <Popup id="menu">
-        <Menu >
+        <Menu > 
           <PopupMenuItem id="m1" doDelay>Item 1</PopupMenuItem>
           <PopupMenuItem id="m2" doDelay>Item 2</PopupMenuItem>
         </Menu>

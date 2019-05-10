@@ -119,7 +119,7 @@ const Popup = (() => {
     }
 
   }
-  Popup.view = (state, actions) => {
+  Popup.view = (state, actions) => (_state, _actions) => {
     if (! initialized) {
       document.body.addEventListener('click', actions.autoclose)
       // 他箇所のクリックを検知するために。

@@ -47,14 +47,13 @@ const Scrim = (() => {
     push: (id) => (state, actions) => ({ids:state.ids.concat([id])}), 
     pop: (id) => (state, actions) => ({ids:state.ids.filter(x => (id != x))})
   }
-  Scrim.view = (state, actions) => {
-    //console.log('Scrim.view', state)
+  Scrim.view = (state, actions) => (_state, _actions) => {
     const rv = state.ids.map((id, i) => {
       const vdom = views[id](101 + i, actions)
       return vdom
     })
     views = {}
-    return rv
+    return (<div>{rv}</div>)
   }
   return Scrim
 })();

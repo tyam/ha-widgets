@@ -81,7 +81,7 @@
       id: "cb3",
       disabled: true
     }, "Checkbox 3")), hyperapp.h(haw.HBox, {
-      g: "3",
+      g: "2",
       noedge: true
     }, hyperapp.h(haw.Radio, {
       id: "rb1",
@@ -94,7 +94,14 @@
       id: "rb3",
       name: "rb",
       disabled: true
-    }, "Radio 3")), hyperapp.h(haw.Scrim, {
+    }, "Radio 3")), hyperapp.h(haw.HBox, {
+      g: "2",
+      noedge: true
+    }, hyperapp.h(haw.DatePicker, {
+      placeholder: "\u9078\u3079",
+      state: state,
+      actions: actions
+    })), hyperapp.h(haw.Scrim, {
       id: "modal"
     }, hyperapp.h(haw.Dialog, null, hyperapp.h("div", null, "\u30C6\u30AD\u30B9\u30C8"), hyperapp.h(haw.HBox, {
       align: "end"
