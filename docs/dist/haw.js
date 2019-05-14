@@ -1200,6 +1200,135 @@
       }
     };
 
+    var Toggle = function Toggle(Box) {
+      return function (_ref, children) {
+        var box = _ref.box,
+            id = _ref.id,
+            _ref$name = _ref.name,
+            name = _ref$name === void 0 ? null : _ref$name,
+            _ref$defaultShown = _ref.defaultShown,
+            defaultShown = _ref$defaultShown === void 0 ? false : _ref$defaultShown,
+            _ref$oncreate = _ref.oncreate,
+            oncreate = _ref$oncreate === void 0 ? null : _ref$oncreate,
+            _ref$onremove = _ref.onremove,
+            onremove = _ref$onremove === void 0 ? null : _ref$onremove,
+            props = _objectWithoutProperties(_ref, ["box", "id", "name", "defaultShown", "oncreate", "onremove"]);
+
+        return function (state, actions) {
+          if (name === null) {
+            name = id;
+          }
+
+          if (oncreate == null) {
+            oncreate = doNothing;
+          }
+
+          if (onremove == null) {
+            onremove = doNothing;
+          }
+
+          var toShow = function toShow() {
+            if (state.haw.toggle.idm.hasOwnProperty(name)) {
+              return state.toggle.idm[name] == id;
+            } else {
+              return defaultShown;
+            }
+          }; //console.log('Toggle', id, name, toShow(), state, box)
+
+
+          if (!toShow()) {
+            return null;
+          }
+
+          props.id = id;
+          props.key = id;
+
+          props.oncreate = function (el) {
+            return oncreate(el), onCreate(el);
+          };
+
+          props.onremove = function (el, done) {
+            return onremove(el), onRemove(el, done);
+          };
+
+          return Box(props, children);
+        };
+      };
+    };
+
+    Toggle.state = {
+      idm: {},
+      prevIdm: {}
+    };
+    Toggle.actions = {
+      show: function show(_ref2) {
+        var name = _ref2.name,
+            id = _ref2.id;
+        return function (_ref3, actions) {
+          var idm = _ref3.idm,
+              prevIdm = _ref3.prevIdm;
+
+          if (idm.hasOwnProperty(name) && idm[name] == id) {
+            // do nothing
+            return null;
+          } else {
+            //console.log('Toggle.show', name, id)
+            return {
+              idm: _objectSpread({}, idm, {
+                name: id
+              }),
+              prevIdm: _objectSpread({}, prevIdm, {
+                name: idm.hasOwnProperty(name) ? idm[name] : null
+              })
+            };
+          }
+        };
+      },
+      hide: function hide(_ref4) {
+        var name = _ref4.name,
+            id = _ref4.id;
+        return function (_ref5, actions) {
+          var idm = _ref5.idm,
+              prevIdm = _ref5.prevIdm;
+
+          if (idm.hasOwnProperty(name) && idm[name] != id) {
+            return null;
+          } else {
+            return {
+              idm: _objectSpread({}, idm, {
+                name: null
+              }),
+              prevIdm: _objectSpread({}, prevIdm, {
+                name: idm.hasOwnProperty(name) ? idm[name] : null
+              })
+            };
+          }
+        };
+      },
+      set: function set(_ref6) {
+        var name = _ref6.name,
+            id = _ref6.id;
+        return function (_ref7, actions) {
+          var idm = _ref7.idm,
+              prevIdm = _ref7.prevIdm;
+
+          if (idm.hasOwnProperty(name) && idm[name] == id) {
+            // do nothing
+            return null;
+          } else {
+            return {
+              idm: _objectSpread({}, idm, {
+                name: id
+              }),
+              prevIdm: _objectSpread({}, prevIdm, {
+                name: idm.hasOwnProperty(name) ? idm[name] : null
+              })
+            };
+          }
+        };
+      }
+    };
+
     var Spinner = function Spinner(_ref) {
       var _ref$classes = _ref.classes,
           classes = _ref$classes === void 0 ? {} : _ref$classes,
@@ -1501,18 +1630,162 @@
       }));
     };
 
+    var BoxedToggle = Toggle(VBox);
+
+    var Collapse = function Collapse(_ref, children) {
+      var id = _ref.id,
+          _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          _ref$name = _ref.name,
+          name = _ref$name === void 0 ? null : _ref$name,
+          _ref$defaultShown = _ref.defaultShown,
+          defaultShown = _ref$defaultShown === void 0 ? false : _ref$defaultShown,
+          others = _objectWithoutProperties(_ref, ["id", "classes", "name", "defaultShown"]);
+
+      var adjust = function adjust(el) {
+        if (!el.firstChild) {
+          el.style.height = 0;
+        } else {
+          var r = el.firstChild.getBoundingClientRect();
+          el.style.height = r.height + 'px';
+        }
+      };
+
+      return hyperapp.h(BoxedToggle, _extends({
+        classes: _objectSpread({
+          "haw-collapse": true
+        }, classes),
+        id: id,
+        name: name,
+        defaultShown: defaultShown,
+        oncreate: adjust
+      }, others), children);
+    };
+
+    Collapse.Trigger = function (Component) {
+      return function (_ref2, children) {
+        var name = _ref2.name,
+            targetId = _ref2.targetId,
+            original = _ref2.onchange,
+            props = _objectWithoutProperties(_ref2, ["name", "targetId", "onchange"]);
+
+        return function (state, actions) {
+          var onchange = function onchange(ev) {
+            if (ev.target.checked) {
+              actions.toggle.show({
+                id: targetId,
+                name: name
+              });
+            } else {
+              actions.toggle.hide({
+                id: targetId,
+                name: name
+              });
+            }
+
+            if (original) original(ev);
+          };
+
+          return Component(_objectSpread({
+            name: name,
+            targetId: targetId,
+            onchange: onchange
+          }, props), children);
+        };
+      };
+    };
+
+    var BoxedToggle$1 = Toggle(VBox);
+
+    var Slider = function Slider(_ref, children) {
+      var name = _ref.name,
+          order = _ref.order,
+          _ref$classes = _ref.classes,
+          classes = _ref$classes === void 0 ? {} : _ref$classes,
+          others = _objectWithoutProperties(_ref, ["name", "order", "classes"]);
+
+      return function (state, actions) {
+        var doReverse = function doReverse(el) {
+          var prevIdx = state.toggle.prevIdm.hasOwnProperty(name) ? order.indexOf(state.toggle.prevIdm[name]) : -1;
+          var idx = state.toggle.idm.hasOwnProperty(name) ? order.indexOf(state.toggle.idm[name]) : -1;
+
+          if (prevIdx > idx) {
+            el.parentElement.classList.add('-reversed');
+          } else {
+            el.parentElement.classList.remove('-reversed');
+          }
+
+          var rect = el.getBoundingClientRect(); //console.log('Slider/doReverse', el.id, rect)
+        };
+
+        return hyperapp.h(VBox, _extends({
+          classes: _objectSpread({
+            "haw-slider": true
+          }, classes)
+        }, others), children.map(function (c, i) {
+          var defaultShown = c.attributes.defaultShown; //console.log('Slider', i, order[i], defaultShown)
+
+          return hyperapp.h(BoxedToggle$1, {
+            classes: {
+              "slide": true
+            },
+            id: order[i],
+            name: name,
+            key: order[i],
+            oncreate: doReverse,
+            defaultShown: defaultShown
+          }, c)(state, actions);
+        }));
+      };
+    };
+
+    Slider.Trigger = function (Component) {
+      return function (_ref2, children) {
+        var name = _ref2.name,
+            targetId = _ref2.targetId,
+            original = _ref2.onchange,
+            props = _objectWithoutProperties(_ref2, ["name", "targetId", "onchange"]);
+
+        return function (state, actions) {
+          var onchange = function onchange(ev) {
+            if (ev.target.checked) {
+              actions.toggle.show({
+                id: targetId,
+                name: name
+              });
+            } else {
+              actions.toggle.hide({
+                id: targetId,
+                name: name
+              });
+            }
+
+            if (original) original(ev);
+          };
+
+          return Component(_objectSpread({
+            name: name,
+            targetId: targetId,
+            onchange: onchange
+          }, props), children);
+        };
+      };
+    };
+
     /* To force rollup watch all sass files */
     var state = {
       datepicker: DatePicker.state,
       scrim: Scrim.state,
       popup: Popup.state,
-      snackbar: Snackbar.state
+      snackbar: Snackbar.state,
+      toggle: Toggle.state
     };
     var actions = {
       datepicker: DatePicker.actions,
       scrim: Scrim.actions,
       popup: Popup.actions,
-      snackbar: Snackbar.actions
+      snackbar: Snackbar.actions,
+      toggle: toggle.actions
     };
     var viewHaw = function viewHaw(state, actions) {
       return [Scrim.view(state.haw.scrim, actions.haw.scrim), Popup.view(state.haw.popup, actions.haw.popup), Snackbar.view(state.haw.snackbar, actions.haw.snackbar)];
@@ -1520,6 +1793,7 @@
 
     exports.Button = Button;
     exports.Checkbox = Checkbox;
+    exports.Collapse = Collapse;
     exports.Component = Component;
     exports.DatePicker = DatePicker;
     exports.Dialog = Dialog;
@@ -1534,6 +1808,7 @@
     exports.Popup = Popup;
     exports.Radio = Radio;
     exports.Scrim = Scrim;
+    exports.Slider = Slider;
     exports.Snackbar = Snackbar;
     exports.Spacer = Spacer;
     exports.Spinner = Spinner;
@@ -1542,6 +1817,7 @@
     exports.TextInput = TextInput;
     exports.Thumbnail = Thumbnail;
     exports.Title = Title;
+    exports.Toggle = Toggle;
     exports.VBox = VBox;
     exports.actions = actions;
     exports.bcs = bcs;

@@ -26,6 +26,8 @@ import '../sass/_title.scss';
 import '../sass/_image.scss';
 import '../sass/_thumbnail.scss';
 import '../sass/_datepicker.scss';
+import '../sass/_collapse.scss';
+import '../sass/_slider.scss';
 
 import './polyfill';
 
@@ -33,6 +35,7 @@ import Scrim from './scrim';
 import Popup from './popup';
 import Snackbar from './snackbar';
 import DatePicker from './datepicker';
+import Toggle from './toggle';
 
 export {bcs, onCreate, onRemove, doNothing, onEmit, parent, windowOffsetX, windowOffsetY} from './common';
 export { default as Component } from './component';
@@ -62,18 +65,23 @@ export { default as Title } from './title';
 export { default as Image } from './image';
 export { default as Thumbnail } from './thumbnail';
 export { default as DatePicker } from './datepicker';
+export { default as Toggle } from './toggle';
+export { default as Collapse } from './collapse';
+export { default as Slider } from './slider';
 
 export const state = {
   datepicker: DatePicker.state, 
   scrim: Scrim.state, 
   popup: Popup.state, 
-  snackbar: Snackbar.state
+  snackbar: Snackbar.state, 
+  toggle: Toggle.state
 };
 export const actions = {
   datepicker: DatePicker.actions, 
   scrim: Scrim.actions, 
   popup: Popup.actions, 
-  snackbar: Snackbar.actions 
+  snackbar: Snackbar.actions, 
+  toggle: toggle.actions
 }
 export const viewHaw = (state, actions) => {
   return [

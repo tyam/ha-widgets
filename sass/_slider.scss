@@ -1,0 +1,33 @@
+
+
+.haw-slider {
+    @extend .haw-vbox;
+    overflow: hidden;
+    position: relative;
+    & > .slide {
+        @extend .haw-vbox;
+        &.-run {
+            transition: transform 0.2s ease-in-out;
+        }
+        &.-created {
+            transform: translateX(100vw);
+            opacity: 0;
+        }
+        &.-removed {
+            transform: translateX(-100vw);
+            //opacity: 0;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    }
+    &.-reversed > .slide {
+        &.-created {
+            transform: translateX(-100vw);
+        }
+        &.-removed {
+            transform: translateX(100vw);
+        }
+    }
+}
+

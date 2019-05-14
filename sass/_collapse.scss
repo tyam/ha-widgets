@@ -1,0 +1,20 @@
+
+
+.haw-collapse {
+    @extend .haw-vbox;
+    transform-origin: top left;
+    overflow:hidden;
+    &.-run {
+        transition: height 0.2s ease-in-out;
+    }
+    &.-created {
+        //transform: scaleY(0.01);
+        height: 1px !important;
+        //opacity: 0;
+    }
+    &.-removed {
+        //transform: scaleY(0.01);
+        height: 1px !important;
+        //opacity: 0;
+    }
+}
